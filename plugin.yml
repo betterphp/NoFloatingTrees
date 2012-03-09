@@ -1,0 +1,12 @@
+name: NoFloatingTrees
+version: 0.6.1
+main: uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees
+load: startup
+commands:
+    nftpurge:
+        description: Runs the tree remove task ahead of schedule.
+        usage: /nftpurge
+permissions:
+    nofloatingtrees.command.nftpurge:
+        description: Allows the /nftpurge command
+        default: op
