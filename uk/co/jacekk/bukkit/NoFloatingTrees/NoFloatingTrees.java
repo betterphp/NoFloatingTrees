@@ -13,25 +13,30 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
+import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.WorldInitListener;
+import uk.co.jacekk.bukkit.NoFloatingTrees.util.NoFloatingTreesConfig;
+import uk.co.jacekk.bukkit.NoFloatingTrees.util.LogHandler;
+
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;
 
 public class NoFloatingTrees extends JavaPlugin {
 	
-	protected NoFloatingTreesConfig config;
-	protected NoFloatingTreesLogHandler log;
-	protected Consumer lb;
+	public NoFloatingTreesConfig config;
+	public LogHandler log;
+	public Consumer lb;
 	
-	protected HashMap<UUID, ArrayList<int[]>> coordList;
+	public HashMap<UUID, ArrayList<int[]>> coordList;
 	
-	protected NoFloatingTreesRemoveAllTask removeAllTask;
+	public NoFloatingTreesRemoveAllTask removeAllTask;
 	
 	public void onEnable(){
 		String pluginDir = this.getDataFolder().getAbsolutePath();
 		(new File(pluginDir)).mkdirs();
 		
 		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
-		this.log = new NoFloatingTreesLogHandler(this, "Minecraft");
+		this.log = new LogHandler(this, "Minecraft");
 		
 		this.coordList = new HashMap<UUID, ArrayList<int[]>>();
 		
@@ -50,9 +55,8 @@ public class NoFloatingTrees extends JavaPlugin {
 		
 		PluginManager manager = this.getServer().getPluginManager();
 		
-		manager.registerEvents(new NoFloatingTreesBlockListener(this), this);
-		manager.registerEvents(new NoFloatingTreesEntityListener(this), this);
-		manager.registerEvents(new NoFloatingTreesWorldListener(this), this);
+		manager.registerEvents(new TreeBreakListener(this), this);
+		manager.registerEvents(new WorldInitListener(this), this);
 		
 		this.log.info("Enabled.");
 	}

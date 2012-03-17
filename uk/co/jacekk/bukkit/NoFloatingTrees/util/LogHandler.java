@@ -1,16 +1,18 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees;
+package uk.co.jacekk.bukkit.NoFloatingTrees.util;
 
 import java.util.logging.Logger;
 
 import org.bukkit.plugin.PluginDescriptionFile;
 
-public class NoFloatingTreesLogHandler {
+import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
+
+public class LogHandler {
 	
 	private NoFloatingTrees plugin;
 	
 	protected Logger log;
 	
-	public NoFloatingTreesLogHandler(NoFloatingTrees instance, String logger){
+	public LogHandler(NoFloatingTrees instance, String logger){
 		this.plugin = instance;
 		
 		this.log = Logger.getLogger(logger);
@@ -18,7 +20,6 @@ public class NoFloatingTreesLogHandler {
 	
 	private String buildString(String message){
 		PluginDescriptionFile pdFile = plugin.getDescription();
-		
 		return pdFile.getName() + " " + pdFile.getVersion() + ": " + message;
 	}
 	
@@ -28,6 +29,10 @@ public class NoFloatingTreesLogHandler {
 	
 	public void warn(String message){
 		this.log.warning(this.buildString(message));
+	}
+	
+	public void fatal(String message){
+		this.log.severe(this.buildString(message));
 	}
 	
 }

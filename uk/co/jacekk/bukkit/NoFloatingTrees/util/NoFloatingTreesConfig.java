@@ -1,10 +1,12 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees;
+package uk.co.jacekk.bukkit.NoFloatingTrees.util;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 
 public class NoFloatingTreesConfig {
 	

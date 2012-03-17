@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees;
+package uk.co.jacekk.bukkit.NoFloatingTrees.listeners;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -8,11 +8,13 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
 
-public class NoFloatingTreesWorldListener implements Listener {
+import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
+
+public class WorldInitListener implements Listener {
 
 	NoFloatingTrees plugin;
 	
-	public NoFloatingTreesWorldListener(NoFloatingTrees instance){
+	public WorldInitListener(NoFloatingTrees instance){
 		this.plugin = instance;
 	}
 	
