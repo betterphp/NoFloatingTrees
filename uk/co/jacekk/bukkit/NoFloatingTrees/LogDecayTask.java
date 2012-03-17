@@ -11,13 +11,13 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
-public class NoFloatingTreesRemoveAllTask implements Runnable {
+public class LogDecayTask implements Runnable {
 	
 	public NoFloatingTrees plugin;
 	
 	public boolean isRunning;
 	
-	public NoFloatingTreesRemoveAllTask(NoFloatingTrees instance){
+	public LogDecayTask(NoFloatingTrees instance){
 		this.plugin = instance;
 		
 		this.isRunning = false;

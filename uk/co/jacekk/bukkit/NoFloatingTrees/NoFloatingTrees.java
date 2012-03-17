@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Material;
+import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,12 +26,15 @@ public class NoFloatingTrees extends JavaPlugin {
 	public NoFloatingTreesConfig config;
 	public LogHandler log;
 	public Consumer lb;
+	public Server server;
+	public PluginManager manager;
 	
 	public HashMap<UUID, ArrayList<int[]>> coordList;
 	
-	public NoFloatingTreesRemoveAllTask removeAllTask;
-	
 	public void onEnable(){
+		this.server = this.getServer();
+		this.manager = this.server.getPluginManager();
+		
 		String pluginDir = this.getDataFolder().getAbsolutePath();
 		(new File(pluginDir)).mkdirs();
 		
@@ -40,18 +43,12 @@ public class NoFloatingTrees extends JavaPlugin {
 		
 		this.coordList = new HashMap<UUID, ArrayList<int[]>>();
 		
-		this.removeAllTask = new NoFloatingTreesRemoveAllTask(this);
+		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 20, 20);
 		
-		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, this.removeAllTask, 20, 20);
-		
-		Plugin logBlock = this.getServer().getPluginManager().getPlugin("LogBlock");
-		
-		if (logBlock != null && this.config.getBoolean("use-logblock")){
-			this.lb = ((LogBlock) logBlock).getConsumer();
+		if (this.manager.isPluginEnabled("LogBlock") && this.config.getBoolean("use-logblock")){
+			this.lb = ((LogBlock) this.manager.getPlugin("LogBlock")).getConsumer();
 			this.log.info("LogBlock found removed blocks will be logged as the user 'NoFloatingTrees'");
 		}
-		
-		PluginManager manager = this.getServer().getPluginManager();
 		
 		manager.registerEvents(new TreeBreakListener(this), this);
 		manager.registerEvents(new WorldInitListener(this), this);
