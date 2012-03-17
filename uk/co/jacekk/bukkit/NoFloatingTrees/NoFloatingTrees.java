@@ -27,7 +27,10 @@ public class NoFloatingTrees extends JavaPlugin {
 	protected NoFloatingTreesRemoveAllTask removeAllTask;
 	
 	public void onEnable(){
-		this.config = new NoFloatingTreesConfig(new File(this.getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
+		String pluginDir = this.getDataFolder().getAbsolutePath();
+		(new File(pluginDir)).mkdirs();
+		
+		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
 		this.log = new NoFloatingTreesLogHandler(this, "Minecraft");
 		
 		this.coordList = new HashMap<UUID, ArrayList<int[]>>();

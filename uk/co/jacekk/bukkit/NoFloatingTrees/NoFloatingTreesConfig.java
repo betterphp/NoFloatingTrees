@@ -11,26 +11,35 @@ public class NoFloatingTreesConfig {
 	private YamlConfiguration config;
 	private HashMap<String, Object> configDefaults = new HashMap<String, Object>();
 	
-	public NoFloatingTreesConfig(File configFile){
+	public NoFloatingTreesConfig(File configFile, NoFloatingTrees plugin){
 		this.config = new YamlConfiguration();
 		
 		this.configDefaults.put("remove-freq", 30);
 		this.configDefaults.put("use-logblock", true);
 		
-		if (configFile.exists() == false){
-			for (String key : this.configDefaults.keySet()){
-				this.config.set(key, this.configDefaults.get(key));
-			}
-			
-			try {
-				this.config.save(configFile);
-			} catch (IOException e){
-				e.printStackTrace();
-			}
-		}else{
+		if (configFile.exists()){
 			try {
 				this.config.load(configFile);
 			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		boolean updateNeeded = false;
+		
+		for (String key : this.configDefaults.keySet()){
+			if (this.config.contains(key) == false){
+				this.config.set(key, this.configDefaults.get(key));
+				
+				updateNeeded = true;
+			}
+		}
+		
+		if (updateNeeded){
+			try {
+				this.config.save(configFile);
+				plugin.log.info("The config.yml file has been updated.");
+			} catch (IOException e){
 				e.printStackTrace();
 			}
 		}
