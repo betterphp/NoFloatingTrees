@@ -73,6 +73,10 @@ public class LocationStore {
 		this.locations.remove(new LocationStorable(location));
 	}
 	
+	public Integer size(){
+		return this.locations.size();
+	}
+	
 	public List<Location> getAll(){
 		ArrayList<Location> locations = new ArrayList<Location>();
 		

@@ -1,8 +1,6 @@
 package uk.co.jacekk.bukkit.NoFloatingTrees.listeners;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
