@@ -16,7 +16,6 @@ public class NoFloatingTreesConfig {
 	public NoFloatingTreesConfig(File configFile, NoFloatingTrees plugin){
 		this.config = new YamlConfiguration();
 		
-		this.configDefaults.put("remove-freq", 30);
 		this.configDefaults.put("use-logblock", true);
 		
 		if (configFile.exists()){

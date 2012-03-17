@@ -42,7 +42,7 @@ public class NoFloatingTrees extends JavaPlugin {
 		
 		this.removeAllTask = new NoFloatingTreesRemoveAllTask(this);
 		
-		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, this.removeAllTask, 0, this.config.getInt("remove-freq") * 60 * 20);
+		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, this.removeAllTask, 20, 20);
 		
 		Plugin logBlock = this.getServer().getPluginManager().getPlugin("LogBlock");
 		
@@ -61,13 +61,6 @@ public class NoFloatingTrees extends JavaPlugin {
 	
 	public void onDisable(){
 		this.log.info("Disabled.");
-		
-		this.log = null;
-		this.lb = null;
-		
-		this.coordList = null;
-		
-		this.removeAllTask = null;
 	}
 	
 	public boolean looksLikeTrunk(Block block){
