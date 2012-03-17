@@ -24,8 +24,32 @@ public class LocationStorable implements Serializable {
 		this.z = location.getBlockZ();
 	}
 	
+	public boolean equals(Location location){
+		if (location.getBlockX() != this.x) return false;
+		if (location.getBlockY() != this.y) return false;
+		if (location.getBlockZ() != this.z) return false;
+		
+		if (location.getWorld().getUID() != this.worldUUID) return false;
+		
+		return true;
+	}
+	
+	public boolean equals(LocationStorable location){
+		if (location.getX() != this.x) return false;
+		if (location.getY() != this.y) return false;
+		if (location.getZ() != this.z) return false;
+		
+		if (location.getWorldUUID() != this.worldUUID) return false;
+		
+		return true;
+	}
+	
 	public World getWorld(){
 		return Bukkit.getWorld(this.worldUUID);
+	}
+	
+	public UUID getWorldUUID(){
+		return this.worldUUID;
 	}
 	
 	public Integer getX(){

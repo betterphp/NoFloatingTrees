@@ -55,8 +55,14 @@ public class LocationStore {
 		}
 	}
 	
-	public Boolean contains(Location location){
-		return this.locations.contains(new LocationStorable(location));
+	public boolean contains(Location location){
+		for (LocationStorable storedLocation : this.locations){
+			if (storedLocation.equals(location)){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public void add(Location location){

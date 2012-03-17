@@ -1,9 +1,13 @@
 package uk.co.jacekk.bukkit.NoFloatingTrees.listeners;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,55 +24,54 @@ public class TreeBreakListener implements Listener {
 		this.plugin = instance;
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onBlockBreak(BlockBreakEvent event){
-		if (event.isCancelled()) return;
+	public boolean looksLikeTrunk(Block block){
+		Material blockType = block.getType();
+		Material aboveType = block.getRelative(BlockFace.UP).getType();
+		Material belowType = block.getRelative(BlockFace.DOWN).getType();
 		
-		Block block = event.getBlock();
-		UUID worldId = block.getWorld().getUID();
-		ArrayList<int[]> coordList;
+		if (Arrays.asList(Material.LOG).contains(blockType) == false) return false;
 		
-		if (plugin.coordList.containsKey(worldId)){
-			coordList = plugin.coordList.get(worldId);
-		}else{
-			coordList = new ArrayList<int[]>();
+		if (Arrays.asList(Material.DIRT, Material.GRASS, Material.LOG, Material.AIR).contains(belowType) == false) return false;
+		
+		if (Arrays.asList(Material.LOG).contains(aboveType) == false) return false;
+		
+		Block highest = block.getWorld().getHighestBlockAt(block.getX(), block.getZ());
+		
+		if (highest.getType() == Material.AIR){
+			highest = highest.getRelative(BlockFace.DOWN);
 		}
 		
-		if (plugin.looksLikeTrunk(block)){
-			int[] coords = new int[2];
-			coords[0] = block.getX();
-			coords[1] = block.getZ();
-			
-			coordList.add(coords);
-			
-			plugin.coordList.put(worldId, coordList);
+		if (Arrays.asList(Material.LEAVES).contains(highest.getType())) return false;
+		
+		return true;
+	}
+	
+	private void processBlockBreak(Block block){
+		Location location = block.getLocation();
+		
+		if (plugin.locations.contains(location) == false){
+			plugin.locations.add(location);
 		}
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void onBlockBreak(BlockBreakEvent event){
+		Block block = event.getBlock();
+		
+		if (this.looksLikeTrunk(block)){
+			this.processBlockBreak(block);
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onEntityExplode(EntityExplodeEvent event){
 		if (event.isCancelled()) return;
 		
-		UUID worldId = event.getLocation().getWorld().getUID();
-		ArrayList<int[]> coordList;
-		
-		if (plugin.coordList.containsKey(worldId)){
-			coordList = plugin.coordList.get(worldId);
-		}else{
-			coordList = new ArrayList<int[]>();
-		}
-		
 		for (Block block : event.blockList()){
-			if (plugin.looksLikeTrunk(block)){
-				int[] coords = new int[2];
-				coords[0] = block.getX();
-				coords[1] = block.getZ();
-				
-				coordList.add(coords);
+			if (this.looksLikeTrunk(block)){
+				this.processBlockBreak(block);
 			}
 		}
-		
-		plugin.coordList.put(worldId, coordList);
 	}
 
 }
