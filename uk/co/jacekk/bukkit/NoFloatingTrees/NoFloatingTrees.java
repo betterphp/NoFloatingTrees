@@ -51,8 +51,6 @@ public class NoFloatingTrees extends JavaPlugin {
 			this.log.info("LogBlock found removed blocks will be logged as the user 'NoFloatingTrees'");
 		}
 		
-		this.getCommand("nftpurge").setExecutor(new NoFloatingTreesCommandExecutor(this));
-		
 		PluginManager manager = this.getServer().getPluginManager();
 		
 		manager.registerEvents(new TreeBreakListener(this), this);
