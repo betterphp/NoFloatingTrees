@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.WorldInitListener;
+import uk.co.jacekk.bukkit.NoFloatingTrees.util.LocationStore;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.NoFloatingTreesConfig;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.LogHandler;
 
@@ -29,7 +30,7 @@ public class NoFloatingTrees extends JavaPlugin {
 	public Server server;
 	public PluginManager manager;
 	
-	public HashMap<UUID, ArrayList<int[]>> coordList;
+	public LocationStore locations;
 	
 	public void onEnable(){
 		this.server = this.getServer();
@@ -39,9 +40,9 @@ public class NoFloatingTrees extends JavaPlugin {
 		(new File(pluginDir)).mkdirs();
 		
 		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
-		this.log = new LogHandler(this, "Minecraft");
+		this.locations = new LocationStore(new File(pluginDir + File.separator + "tree-locations.bin"));
 		
-		this.coordList = new HashMap<UUID, ArrayList<int[]>>();
+		this.log = new LogHandler(this, "Minecraft");
 		
 		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 20, 20);
 		
