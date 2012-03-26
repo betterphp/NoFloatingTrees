@@ -47,8 +47,8 @@ public class TreeBreakListener implements Listener {
 	private void processBlockBreak(Block block){
 		Location location = block.getLocation();
 		
-		if (plugin.locations.contains(location) == false){
-			plugin.locations.add(location);
+		if (plugin.treeLocations.contains(location) == false){
+			plugin.treeLocations.add(location);
 		}
 	}
 	
