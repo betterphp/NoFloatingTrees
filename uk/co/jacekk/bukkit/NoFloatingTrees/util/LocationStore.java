@@ -70,7 +70,11 @@ public class LocationStore {
 	}
 	
 	public void remove(Location location){
-		this.locations.remove(new LocationStorable(location));
+		for (LocationStorable storedLocation : new ArrayList<LocationStorable>(this.locations)){
+			if (storedLocation.equals(location)){
+				this.locations.remove(storedLocation);
+			}
+		}
 	}
 	
 	public Integer size(){

@@ -5,6 +5,7 @@ import java.util.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class LogDecayTask implements Runnable {
@@ -18,27 +19,36 @@ public class LogDecayTask implements Runnable {
 	}
 	
 	public void run(){
-		plugin.log.info("Block Queue Size: " + plugin.blockLocations.size());
-		
 		Block block;
+		Material type;
+		ItemStack drop;
 		
-		for (Location location : plugin.blockLocations.getAll()){
-			if (location.getChunk().isLoaded()){
+		locations: for (Location location : plugin.blockLocations.getAll()){
+			if (location.getChunk().isLoaded() && rand.nextInt(100) < 15){
 				block = location.getBlock();
+				type = block.getType();
 				
-				if (rand.nextInt(100) < 20){
+				for (Player player : location.getWorld().getPlayers()){
+					if (player.getLocation().distance(location) < 40){
+						continue locations;
+					}
+				}
+				
+				if (type == Material.LOG){
+					drop = new ItemStack(type, 1, (short) 0, block.getData()); 
+					
 					block.setType(Material.AIR);
 					
-					if (rand.nextBoolean()){
-						location.getWorld().dropItemNaturally(location, new ItemStack(block.getTypeId(), 1));
+					if (rand.nextInt(100) < 15){
+						location.getWorld().dropItemNaturally(location, drop);
 					}
-					
-					plugin.blockLocations.remove(location);
 					
 					if (plugin.lb != null){
 						plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
 					}
 				}
+				
+				plugin.blockLocations.remove(location);
 			}
 		}
 	}
