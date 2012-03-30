@@ -24,22 +24,21 @@ public class TreeBreakListener implements Listener {
 	}
 	
 	private Block[] getSurroundingBlocks(Block block){
-		Block[] blocks = new Block[14];
+		Block[] blocks = new Block[13];
 		
 		blocks[0] = block.getRelative(BlockFace.UP);
-		blocks[1] = block.getRelative(BlockFace.DOWN);
-		blocks[2] = block.getRelative(BlockFace.NORTH);
-		blocks[3] = block.getRelative(BlockFace.SOUTH);
-		blocks[4] = block.getRelative(BlockFace.EAST);
-		blocks[5] = block.getRelative(BlockFace.WEST);
-		blocks[6] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH);
-		blocks[7] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_EAST);
-		blocks[8] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_WEST);
-		blocks[9] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH);
-		blocks[10] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_EAST);
-		blocks[11] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_WEST);
-		blocks[12] = block.getRelative(BlockFace.UP).getRelative(BlockFace.EAST);
-		blocks[13] = block.getRelative(BlockFace.UP).getRelative(BlockFace.WEST);
+		blocks[1] = block.getRelative(BlockFace.NORTH);
+		blocks[2] = block.getRelative(BlockFace.SOUTH);
+		blocks[3] = block.getRelative(BlockFace.EAST);
+		blocks[4] = block.getRelative(BlockFace.WEST);
+		blocks[5] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH);
+		blocks[6] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_EAST);
+		blocks[7] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_WEST);
+		blocks[8] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH);
+		blocks[9] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_EAST);
+		blocks[10] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_WEST);
+		blocks[11] = block.getRelative(BlockFace.UP).getRelative(BlockFace.EAST);
+		blocks[12] = block.getRelative(BlockFace.UP).getRelative(BlockFace.WEST);
 		
 		return blocks;
 	}
@@ -48,20 +47,20 @@ public class TreeBreakListener implements Listener {
 		World world = block.getWorld();
 		
 		// Not part of the trunk ?
-		if (block.getRelative(BlockFace.DOWN).getType() != Material.DIRT && block.getRelative(BlockFace.DOWN).getType() != Material.LOG){
+		Material aboveType = block.getRelative(BlockFace.UP).getType();
+		Material belowType = block.getRelative(BlockFace.DOWN).getType();
+		
+		if ((belowType != Material.DIRT && belowType != Material.LOG) || aboveType != Material.LOG){
 			return;
 		}
 		
-		if (block.getRelative(BlockFace.UP).getType() != Material.LOG){
-			return;
-		}
+		// Left a floating tree and not part of a house ?
+		Material northType = block.getRelative(BlockFace.NORTH).getType();
+		Material southType = block.getRelative(BlockFace.SOUTH).getType();
+		Material eastType = block.getRelative(BlockFace.EAST).getType();
+		Material westType = block.getRelative(BlockFace.WEST).getType();
 		
-		// Part of a wall ?
-		if (block.getRelative(BlockFace.NORTH).getType() == Material.LOG && block.getRelative(BlockFace.SOUTH).getType() == Material.LOG){
-			return;
-		}
-		
-		if (block.getRelative(BlockFace.EAST).getType() == Material.LOG && block.getRelative(BlockFace.WEST).getType() == Material.LOG){
+		if (northType == Material.LOG || southType == Material.LOG || eastType == Material.LOG || westType == Material.LOG){
 			return;
 		}
 		
