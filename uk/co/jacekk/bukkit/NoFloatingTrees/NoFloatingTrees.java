@@ -28,13 +28,13 @@ public class NoFloatingTrees extends JavaPlugin {
 		this.server = this.getServer();
 		this.manager = this.server.getPluginManager();
 		
+		this.log = new LogHandler(this, "Minecraft");
+		
 		String pluginDir = this.getDataFolder().getAbsolutePath();
 		(new File(pluginDir)).mkdirs();
 		
 		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
 		this.blockLocations = new LocationStore(new File(pluginDir + File.separator + "block-locations.bin"));
-		
-		this.log = new LogHandler(this, "Minecraft");
 		
 		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 40, 40);
 		
