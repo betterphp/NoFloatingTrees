@@ -1,1 +1,5 @@
-This plugin logs the position of any block that a player breaks that looks a bit like a tree. Every 30 minutes each entry in this list of positions is checked more thoroughly to make sure it is a tree and that is it not connected to the ground. When it is found that there are leaves with no logs connecting them to the ground, all of the logs of that tree will be removed allowing the leaves to decay naturally.
+This plugin will try to remove any logs that are left floating in the air when a player cuts down a tree so that the leaves can decay. Floating leaves are a pet hate of mine and the current ways to tackle then seem to either involve giving the player lots of easy free wood or take up an awful lot of admin time.
+
+Any tree that has been partially cut down will decay over time as leaves normally do when there are no logs near them, they will only decay if there are no players within 40 blocks. A log block that decays naturally will have only a 15% change of dropping an item, this should discourage people from cutting down trees and then waiting for them to fall.
+
+If you have the LogBlock plugin installed, any blocks that this removed will be logged as the user "NoFloatingTrees".
