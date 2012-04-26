@@ -36,7 +36,7 @@ public class NoFloatingTrees extends JavaPlugin {
 		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
 		this.blockLocations = new LocationStore(new File(pluginDir + File.separator + "block-locations.bin"));
 		
-		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 40, 40);
+		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
 		
 		if (this.manager.isPluginEnabled("LogBlock") && this.config.getBoolean("use-logblock")){
 			this.lb = ((LogBlock) this.manager.getPlugin("LogBlock")).getConsumer();
