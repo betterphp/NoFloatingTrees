@@ -36,7 +36,9 @@ public class NoFloatingTrees extends JavaPlugin {
 		(new File(pluginDir)).mkdirs();
 		
 		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
-		this.blockLocations = new BlockLocationStore(new File(pluginDir + File.separator + "block-locations.bin"));
+		this.blockLocations = new BlockLocationStore(new File(pluginDir + File.separator + "log-locations.bin"));
+		
+		this.blockLocations.load();
 		
 		// TODO: Remove this with the next major version
 		File oldBlockFile = new File(pluginDir + File.separator + "block-locations.bin");
@@ -52,7 +54,7 @@ public class NoFloatingTrees extends JavaPlugin {
 			
 			this.log.info("After: " + this.blockLocations.size(true));
 			
-	//		oldBlockFile.delete();
+			oldBlockFile.delete();
 		}
 		// Stop removing here
 		
@@ -69,6 +71,8 @@ public class NoFloatingTrees extends JavaPlugin {
 	}
 	
 	public void onDisable(){
+		this.blockLocations.save();
+		
 		this.log.info("Disabled.");
 	}
 	
