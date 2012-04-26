@@ -2,11 +2,13 @@ package uk.co.jacekk.bukkit.NoFloatingTrees;
 
 import java.io.File;
 
+import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
+import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStore;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.LocationStore;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.NoFloatingTreesConfig;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.LogHandler;
@@ -22,7 +24,7 @@ public class NoFloatingTrees extends JavaPlugin {
 	public Server server;
 	public PluginManager manager;
 	
-	public LocationStore blockLocations;
+	public BlockLocationStore blockLocations;
 	
 	public void onEnable(){
 		this.server = this.getServer();
@@ -34,7 +36,25 @@ public class NoFloatingTrees extends JavaPlugin {
 		(new File(pluginDir)).mkdirs();
 		
 		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
-		this.blockLocations = new LocationStore(new File(pluginDir + File.separator + "block-locations.bin"));
+		this.blockLocations = new BlockLocationStore(new File(pluginDir + File.separator + "block-locations.bin"));
+		
+		// TODO: Remove this with the next major version
+		File oldBlockFile = new File(pluginDir + File.separator + "block-locations.bin");
+		
+		if (oldBlockFile.exists()){
+			LocationStore oldLocations = new LocationStore(oldBlockFile);
+			
+			this.log.info("Before: " + oldLocations.size());
+			
+			for (Location location : oldLocations.getAll()){
+				this.blockLocations.add(location);
+			}
+			
+			this.log.info("After: " + this.blockLocations.size(true));
+			
+	//		oldBlockFile.delete();
+		}
+		// Stop removing here
 		
 		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
 		

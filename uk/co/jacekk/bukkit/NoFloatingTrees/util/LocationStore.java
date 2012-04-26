@@ -12,11 +12,11 @@ import org.bukkit.Location;
 
 public class LocationStore {
 	
-	private ArrayList<LocationStorable> locations;
+	private ArrayList<BlockLocationStorable> locations;
 	private File storageFile;
 	
 	public LocationStore(File storageFile){
-		this.locations = new ArrayList<LocationStorable>();
+		this.locations = new ArrayList<BlockLocationStorable>();
 		this.storageFile = storageFile;
 		
 		if (this.storageFile.exists() == false){
@@ -37,7 +37,7 @@ public class LocationStore {
 	@SuppressWarnings("unchecked")
 	public void load(){
 		try{
-			this.locations = (ArrayList<LocationStorable>) new ObjectInputStream(new FileInputStream(this.storageFile)).readObject();
+			this.locations = (ArrayList<BlockLocationStorable>) new ObjectInputStream(new FileInputStream(this.storageFile)).readObject();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -56,7 +56,7 @@ public class LocationStore {
 	}
 	
 	public boolean contains(Location location){
-		for (LocationStorable storedLocation : this.locations){
+		for (BlockLocationStorable storedLocation : this.locations){
 			if (storedLocation.equals(location)){
 				return true;
 			}
@@ -66,11 +66,11 @@ public class LocationStore {
 	}
 	
 	public void add(Location location){
-		this.locations.add(new LocationStorable(location));
+		this.locations.add(new BlockLocationStorable(location));
 	}
 	
 	public void remove(Location location){
-		for (LocationStorable storedLocation : new ArrayList<LocationStorable>(this.locations)){
+		for (BlockLocationStorable storedLocation : new ArrayList<BlockLocationStorable>(this.locations)){
 			if (storedLocation.equals(location)){
 				this.locations.remove(storedLocation);
 			}
@@ -84,7 +84,7 @@ public class LocationStore {
 	public List<Location> getAll(){
 		ArrayList<Location> locations = new ArrayList<Location>();
 		
-		for (LocationStorable storedLocation : this.locations){
+		for (BlockLocationStorable storedLocation : this.locations){
 			locations.add(storedLocation.getLocation());
 		}
 		
