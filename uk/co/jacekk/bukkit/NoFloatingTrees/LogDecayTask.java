@@ -37,7 +37,7 @@ public class LogDecayTask implements Runnable {
 						type = block.getType();
 						
 						for (Player player : blockLocation.getWorld().getPlayers()){
-							if (player.getLocation().distanceSquared(block.getLocation()) < 1024){
+							if (player.getLocation().distance(block.getLocation()) < 40){
 								continue locations;
 							}
 						}

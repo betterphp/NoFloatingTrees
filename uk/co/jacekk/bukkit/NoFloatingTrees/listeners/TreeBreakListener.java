@@ -70,8 +70,14 @@ public class TreeBreakListener implements Listener {
 		
 		for (y = block.getY(); world.getBlockTypeIdAt(x, y, z) != 0; ++y);
 		
+		Integer topId = world.getBlockTypeIdAt(x, y - 1, z);
+		
+		if (topId == Material.SNOW.getId()){
+			topId = world.getBlockTypeIdAt(x, y - 2, z);
+		}
+		
 		// No leaf block a the top ?
-		if (world.getBlockTypeIdAt(x, y - 1, z) != Material.LEAVES.getId()){
+		if (topId != Material.LEAVES.getId()){
 			return;
 		}
 		
