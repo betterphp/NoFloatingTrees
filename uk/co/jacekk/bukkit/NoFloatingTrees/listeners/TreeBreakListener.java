@@ -24,21 +24,25 @@ public class TreeBreakListener implements Listener {
 	}
 	
 	private Block[] getSurroundingBlocks(Block block){
-		Block[] blocks = new Block[13];
+		Block[] blocks = new Block[17];
 		
 		blocks[0] = block.getRelative(BlockFace.UP);
 		blocks[1] = block.getRelative(BlockFace.NORTH);
-		blocks[2] = block.getRelative(BlockFace.SOUTH);
-		blocks[3] = block.getRelative(BlockFace.EAST);
-		blocks[4] = block.getRelative(BlockFace.WEST);
-		blocks[5] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH);
-		blocks[6] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_EAST);
-		blocks[7] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_WEST);
-		blocks[8] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH);
-		blocks[9] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_EAST);
-		blocks[10] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_WEST);
-		blocks[11] = block.getRelative(BlockFace.UP).getRelative(BlockFace.EAST);
-		blocks[12] = block.getRelative(BlockFace.UP).getRelative(BlockFace.WEST);
+		blocks[2] = block.getRelative(BlockFace.NORTH_EAST);
+		blocks[3] = block.getRelative(BlockFace.NORTH_WEST);
+		blocks[4] = block.getRelative(BlockFace.SOUTH);
+		blocks[5] = block.getRelative(BlockFace.SOUTH_EAST);
+		blocks[6] = block.getRelative(BlockFace.SOUTH_WEST);
+		blocks[7] = block.getRelative(BlockFace.EAST);
+		blocks[8] = block.getRelative(BlockFace.WEST);
+		blocks[9] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH);
+		blocks[10] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_EAST);
+		blocks[11] = block.getRelative(BlockFace.UP).getRelative(BlockFace.NORTH_WEST);
+		blocks[12] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH);
+		blocks[13] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_EAST);
+		blocks[14] = block.getRelative(BlockFace.UP).getRelative(BlockFace.SOUTH_WEST);
+		blocks[15] = block.getRelative(BlockFace.UP).getRelative(BlockFace.EAST);
+		blocks[16] = block.getRelative(BlockFace.UP).getRelative(BlockFace.WEST);
 		
 		return blocks;
 	}
