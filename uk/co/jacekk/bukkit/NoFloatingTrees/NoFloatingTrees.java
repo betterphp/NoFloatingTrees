@@ -7,6 +7,8 @@ import org.bukkit.Server;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
+import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStore;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.LocationStore;
@@ -58,14 +60,17 @@ public class NoFloatingTrees extends JavaPlugin {
 		}
 		// Stop removing here
 		
-		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
-		
 		if (this.manager.isPluginEnabled("LogBlock") && this.config.getBoolean("use-logblock")){
 			this.lb = ((LogBlock) this.manager.getPlugin("LogBlock")).getConsumer();
 			this.log.info("LogBlock found removed blocks will be logged as the user 'NoFloatingTrees'");
 		}
 		
-		manager.registerEvents(new TreeBreakListener(this), this);
+		this.server.getScheduler().scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
+		
+		this.manager.registerEvents(new TreeBreakListener(this), this);
+		
+		this.getCommand("nftpurge").setExecutor(new NftPurgeExecutor(this));
+		this.getCommand("nftdebug").setExecutor(new NftDebugExecutor(this));
 		
 		this.log.info("Enabled.");
 	}

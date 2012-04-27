@@ -27,20 +27,11 @@ public class ChunkLocationStorable implements Serializable {
 		this(location.getChunk());
 	}
 	
-	public boolean equals(Location location){
-		if (location.getBlockX() != this.x) return false;
-		if (location.getBlockZ() != this.z) return false;
-		
-		if (location.getWorld().getUID() != this.worldUUID) return false;
-		
-		return true;
-	}
-	
 	public boolean equals(ChunkLocationStorable location){
-		if (location.getX() != this.x) return false;
-		if (location.getZ() != this.z) return false;
+		if (!location.getX().equals(this.x)) return false;
+		if (!location.getZ().equals(this.z)) return false;
 		
-		if (location.getWorldUUID() != this.worldUUID) return false;
+		if (!location.getWorldUUID().equals(this.worldUUID)) return false;
 		
 		return true;
 	}

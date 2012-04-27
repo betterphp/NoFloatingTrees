@@ -75,6 +75,10 @@ public class BlockLocationStore {
 	}
 	
 	public void add(Location location){
+		if (this.contains(location)){
+			return;
+		}
+		
 		ChunkLocationStorable chunkLocation = new ChunkLocationStorable(location);
 		BlockLocationStorable blockLocation = new BlockLocationStorable(location);
 		
@@ -92,13 +96,30 @@ public class BlockLocationStore {
 		ChunkLocationStorable chunkLocation = new ChunkLocationStorable(location);
 		BlockLocationStorable blockLocation = new BlockLocationStorable(location);
 		
+		ArrayList<BlockLocationStorable> blocks;
+		
 		for (Entry<ChunkLocationStorable, ArrayList<BlockLocationStorable>> entry : this.locations.entrySet()){
 			if (entry.getKey().equals(chunkLocation)){
-				if (entry.getValue().remove(blockLocation)){
-					return;
+				blocks = entry.getValue();
+				
+				for (int i = 0; i < blocks.size(); ++i){
+					if (blocks.get(i).equals(blockLocation)){
+						blocks.remove(i);
+						return;
+					}
 				}
 			}
 		}
+	}
+	
+	public void removeAll(ArrayList<Location> blocks){
+		for (Location location : blocks){
+			this.remove(location);
+		}
+	}
+	
+	public void clear(){
+		this.locations.clear();
 	}
 	
 	public Integer size(boolean deep){

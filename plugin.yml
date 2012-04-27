@@ -1,4 +1,18 @@
 name: NoFloatingTrees
-version: 0.8.2
+version: 0.9
 main: uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees
 softdepend: [LogBlock]
+commands:
+    nftpurge:
+        description: Removes ALL the logs.
+        usage: /<command> [true/false]
+    nftdebug:
+        description: Gets some debug information
+        usage: /<command>
+permissions:
+    nofloatingtrees.command.purge:
+        description: Allows the use of the /nftpurge command
+        default: op
+    nofloatingtrees.command.debug:
+        description: Allows the use of the /nftdebug command
+        default: op
