@@ -2,13 +2,10 @@ package uk.co.jacekk.bukkit.NoFloatingTrees;
 
 import java.io.File;
 
-import org.bukkit.Location;
-
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStore;
-import uk.co.jacekk.bukkit.NoFloatingTrees.util.LocationStore;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.NoFloatingTreesConfig;
 import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
 
@@ -42,14 +39,10 @@ public class NoFloatingTrees extends BasePlugin {
 		
 		this.getCommand("nftpurge").setExecutor(new NftPurgeExecutor(this));
 		this.getCommand("nftdebug").setExecutor(new NftDebugExecutor(this));
-		
-		this.log.info("Enabled.");
 	}
 	
 	public void onDisable(){
 		this.blockLocations.save();
-		
-		this.log.info("Disabled.");
 	}
 	
 }
