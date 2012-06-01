@@ -9,21 +9,21 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStorable;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.ChunkLocationStorable;
+import uk.co.jacekk.bukkit.baseplugin.BaseCommandExecutor;
 
-public class NftPurgeExecutor implements CommandExecutor {
+public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	
-	private NoFloatingTrees plugin;
 	private Random rand;
 	
 	public NftPurgeExecutor(NoFloatingTrees plugin){
-		this.plugin = plugin;
+		super(plugin);
+		
 		this.rand = new Random();
 	}
 	

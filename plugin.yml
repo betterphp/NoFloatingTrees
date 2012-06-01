@@ -1,5 +1,5 @@
 name: NoFloatingTrees
-version: 0.9
+version: 0.10
 main: uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees
 softdepend: [LogBlock]
 commands:

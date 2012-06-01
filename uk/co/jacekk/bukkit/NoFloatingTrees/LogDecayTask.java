@@ -12,14 +12,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStorable;
+import uk.co.jacekk.bukkit.baseplugin.BaseTask;
 
-public class LogDecayTask implements Runnable {
+public class LogDecayTask extends BaseTask<NoFloatingTrees> {
 	
-	private NoFloatingTrees plugin;
 	private Random rand;
 	
-	public LogDecayTask(NoFloatingTrees instance){
-		this.plugin = instance;
+	public LogDecayTask(NoFloatingTrees plugin){
+		super(plugin);
+		
 		this.rand = new Random();
 	}
 	

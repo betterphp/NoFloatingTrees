@@ -2,17 +2,15 @@ package uk.co.jacekk.bukkit.NoFloatingTrees.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
+import uk.co.jacekk.bukkit.baseplugin.BaseCommandExecutor;
 
-public class NftDebugExecutor implements CommandExecutor {
-	
-private NoFloatingTrees plugin;
+public class NftDebugExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	
 	public NftDebugExecutor(NoFloatingTrees plugin){
-		this.plugin = plugin;
+		super(plugin);
 	}
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){

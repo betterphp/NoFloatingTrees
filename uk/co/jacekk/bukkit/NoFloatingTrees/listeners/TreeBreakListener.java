@@ -9,18 +9,16 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
+import uk.co.jacekk.bukkit.baseplugin.BaseListener;
 
-public class TreeBreakListener implements Listener {
+public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 	
-	NoFloatingTrees plugin;
-	
-	public TreeBreakListener(NoFloatingTrees instance){
-		this.plugin = instance;
+	public TreeBreakListener(NoFloatingTrees plugin){
+		super(plugin);
 	}
 	
 	private Block[] getSurroundingBlocks(Block block){
