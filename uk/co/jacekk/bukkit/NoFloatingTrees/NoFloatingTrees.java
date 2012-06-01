@@ -19,11 +19,10 @@ public class NoFloatingTrees extends BasePlugin {
 	public BlockLocationStore blockLocations;
 	
 	public void onEnable(){
-		String pluginDir = this.getDataFolder().getAbsolutePath();
-		(new File(pluginDir)).mkdirs();
+		super.onEnable(true);
 		
-		this.config = new PluginConfig(new File(pluginDir + File.separator + "config.yml"), Config.values(), this.log);
-		this.blockLocations = new BlockLocationStore(new File(pluginDir + File.separator + "log-locations.bin"));
+		this.config = new PluginConfig(new File(this.baseDirPath + File.separator + "config.yml"), Config.values(), this.log);
+		this.blockLocations = new BlockLocationStore(new File(this.baseDirPath + File.separator + "log-locations.bin"));
 		this.blockLocations.load();
 		
 		if (this.pluginManager.isPluginEnabled("LogBlock") && this.config.getBoolean(Config.USE_LOGBLOCK)){
