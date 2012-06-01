@@ -29,26 +29,7 @@ public class NoFloatingTrees extends BasePlugin {
 		
 		this.config = new NoFloatingTreesConfig(new File(pluginDir + File.separator + "config.yml"), this);
 		this.blockLocations = new BlockLocationStore(new File(pluginDir + File.separator + "log-locations.bin"));
-		
 		this.blockLocations.load();
-		
-		// TODO: Remove this with the next major version
-		File oldBlockFile = new File(pluginDir + File.separator + "block-locations.bin");
-		
-		if (oldBlockFile.exists()){
-			LocationStore oldLocations = new LocationStore(oldBlockFile);
-			
-			this.log.info("Before: " + oldLocations.size());
-			
-			for (Location location : oldLocations.getAll()){
-				this.blockLocations.add(location);
-			}
-			
-			this.log.info("After: " + this.blockLocations.size(true));
-			
-			oldBlockFile.delete();
-		}
-		// Stop removing here
 		
 		if (this.pluginManager.isPluginEnabled("LogBlock") && this.config.getBoolean("use-logblock")){
 			this.lb = ((LogBlock) this.pluginManager.getPlugin("LogBlock")).getConsumer();
