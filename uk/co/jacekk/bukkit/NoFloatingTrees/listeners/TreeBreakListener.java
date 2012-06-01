@@ -12,6 +12,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
+import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.baseplugin.BaseListener;
 
@@ -107,6 +108,10 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 	public void onBlockBreak(BlockBreakEvent event){
 		Block block = event.getBlock();
 		
+		if (plugin.config.getStringList(Config.IGNORE_WORLDS).contains(block.getWorld().getName())){
+			return;
+		}
+		
 		if (block.getType() == Material.LOG){
 			this.processTreeBlockBreak(block);
 		}
@@ -114,6 +119,10 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onEntityExplode(EntityExplodeEvent event){
+		if (plugin.config.getStringList(Config.IGNORE_WORLDS).contains(event.getLocation().getWorld().getName())){
+			return;
+		}
+		
 		for (Block block : event.blockList()){
 			if (block.getType() == Material.LOG){
 				this.processTreeBlockBreak(block);

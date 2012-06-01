@@ -1,10 +1,13 @@
 package uk.co.jacekk.bukkit.NoFloatingTrees;
 
+import java.util.Arrays;
+
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfigKey;
 
 public enum Config implements PluginConfigKey {
 	
-	USE_LOGBLOCK(		"use-logblock",		true);
+	USE_LOGBLOCK(		"use-logblock",		true),
+	IGNORE_WORLDS(		"ignore-worlds",	Arrays.asList("world_nether", "world_the_end"));
 	
 	private String key;
 	private Object defaultValue;
