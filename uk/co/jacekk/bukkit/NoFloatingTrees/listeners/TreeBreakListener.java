@@ -46,15 +46,24 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		return blocks;
 	}
 	
-	public void processTreeBlockBreak(Block block){
+	private void processTreeBlockBreak(Block block, boolean force){
+		ArrayList<Block> tree = getTree(block, false);
+		if (tree != null) {
+			for (Block log : tree){
+				plugin.blockLocations.add(log.getLocation());
+			}
+		}
+	}
+	
+	public ArrayList<Block> getTree(Block block, boolean force){
 		World world = block.getWorld();
 		
 		// Not part of the trunk ?
 		Material aboveType = block.getRelative(BlockFace.UP).getType();
 		Material belowType = block.getRelative(BlockFace.DOWN).getType();
 		
-		if ((belowType != Material.DIRT && belowType != Material.LOG) || aboveType != Material.LOG){
-			return;
+		if (!force && ((belowType != Material.DIRT && belowType != Material.GRASS && belowType != Material.LOG) || aboveType != Material.LOG)) {
+			return null;
 		}
 		
 		// Left a floating tree and not part of a house ?
@@ -64,7 +73,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		Material westType = block.getRelative(BlockFace.WEST).getType();
 		
 		if (northType == Material.LOG || southType == Material.LOG || eastType == Material.LOG || westType == Material.LOG){
-			return;
+			return null;
 		}
 		
 		int x = block.getX();
@@ -73,15 +82,17 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		
 		for (y = block.getY(); world.getBlockTypeIdAt(x, y, z) != 0; ++y);
 		
-		Integer topId = world.getBlockTypeIdAt(x, y - 1, z);
-		
-		if (topId == Material.SNOW.getId()){
-			topId = world.getBlockTypeIdAt(x, y - 2, z);
-		}
-		
-		// No leaf block a the top ?
-		if (topId != Material.LEAVES.getId()){
-			return;
+		if (!force) {
+			Integer topId = world.getBlockTypeIdAt(x, y - 1, z);
+			
+			if (topId == Material.SNOW.getId()){
+				topId = world.getBlockTypeIdAt(x, y - 2, z);
+			}
+			
+			// No leaf block a the top ?
+			if (topId != Material.LEAVES.getId()){
+				return null;
+			}
 		}
 		
 		ArrayList<Block> logs = new ArrayList<Block>();
@@ -99,9 +110,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 			}
 		}
 		
-		for (Block log : logs){
-			plugin.blockLocations.add(log.getLocation());
-		}
+		return logs;
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -113,7 +122,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		}
 		
 		if (block.getType() == Material.LOG){
-			this.processTreeBlockBreak(block);
+			this.processTreeBlockBreak(block, false);
 		}
 	}
 	
@@ -125,7 +134,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		
 		for (Block block : event.blockList()){
 			if (block.getType() == Material.LOG){
-				this.processTreeBlockBreak(block);
+				this.processTreeBlockBreak(block, false);
 			}
 		}
 	}

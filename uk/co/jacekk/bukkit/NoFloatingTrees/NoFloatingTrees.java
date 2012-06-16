@@ -1,6 +1,7 @@
 package uk.co.jacekk.bukkit.NoFloatingTrees;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.bukkit.block.Block;
 
@@ -46,7 +47,14 @@ public class NoFloatingTrees extends BasePlugin {
 		this.blockLocations.save();
 	}
 	
-	public void processTreeBlockBreak(Block block) {
-		listener.processTreeBlockBreak(block);
+	/**
+	 * Get tree of a block
+	 * @param block The block to check for a tree
+	 * @param force if true, ignore not being directly above dirt/grass, or not under
+	 * another log, or if topmost block is not leaves 
+	 * @return {@link ArrayList<Block>} of tree log blocks, or null
+	 */
+	public ArrayList<Block> getTree(Block block, boolean force) {
+		return listener.getTree(block, force);
 	}
 }
