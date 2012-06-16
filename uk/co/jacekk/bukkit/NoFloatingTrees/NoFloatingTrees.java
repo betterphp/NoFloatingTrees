@@ -1,6 +1,7 @@
 package uk.co.jacekk.bukkit.NoFloatingTrees;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.bukkit.block.Block;
 
@@ -36,7 +37,7 @@ public class NoFloatingTrees extends BasePlugin {
 		this.scheduler.scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
 		
 		this.listener = new TreeBreakListener(this);
-		this.pluginManager.registerEvents(this.listener, this);
+		this.pluginManager.registerEvents(listener, this);
 		
 		this.getCommand("nftpurge").setExecutor(new NftPurgeExecutor(this));
 		this.getCommand("nftdebug").setExecutor(new NftDebugExecutor(this));
@@ -46,8 +47,14 @@ public class NoFloatingTrees extends BasePlugin {
 		this.blockLocations.save();
 	}
 	
-	public void processTreeBlockBreak(Block block){
-		this.listener.processTreeBlockBreak(block);
+	/**
+	 * Get tree of a block
+	 * @param block The block to check for a tree
+	 * @param force if true, ignore not being directly above dirt/grass, or not under
+	 * another log, or if topmost block is not leaves 
+	 * @return {@link ArrayList<Block>} of tree log blocks, or null
+	 */
+	public ArrayList<Block> getTree(Block block, boolean force) {
+		return this.listener.getTree(block, force);
 	}
-	
 }
