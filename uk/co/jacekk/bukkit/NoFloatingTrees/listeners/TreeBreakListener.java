@@ -46,7 +46,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		return blocks;
 	}
 	
-	private void processTreeBlockBreak(Block block){
+	public void processTreeBlockBreak(Block block){
 		World world = block.getWorld();
 		
 		// Not part of the trunk ?

@@ -2,6 +2,8 @@ package uk.co.jacekk.bukkit.NoFloatingTrees;
 
 import java.io.File;
 
+import org.bukkit.block.Block;
+
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
@@ -17,6 +19,7 @@ public class NoFloatingTrees extends BasePlugin {
 	public Consumer lb;
 	
 	public BlockLocationStore blockLocations;
+	private TreeBreakListener listener;
 	
 	public void onEnable(){
 		super.onEnable(true);
@@ -32,7 +35,8 @@ public class NoFloatingTrees extends BasePlugin {
 		
 		this.scheduler.scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
 		
-		this.pluginManager.registerEvents(new TreeBreakListener(this), this);
+		this.listener = new TreeBreakListener(this);
+		this.pluginManager.registerEvents(listener, this);
 		
 		this.getCommand("nftpurge").setExecutor(new NftPurgeExecutor(this));
 		this.getCommand("nftdebug").setExecutor(new NftDebugExecutor(this));
@@ -42,4 +46,7 @@ public class NoFloatingTrees extends BasePlugin {
 		this.blockLocations.save();
 	}
 	
+	public void processTreeBlockBreak(Block block) {
+		listener.processTreeBlockBreak(block);
+	}
 }
