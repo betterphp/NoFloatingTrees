@@ -49,18 +49,20 @@ public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		for (Entry<ChunkLocationStorable, ArrayList<BlockLocationStorable>> chunks : plugin.blockLocations.getAll().entrySet()){
 			for (BlockLocationStorable blockLocation : chunks.getValue()){
 				block = blockLocation.getBlock();
-				type = block.getType();
-				location = block.getLocation();
-				
-				if (type == Material.LOG){
-					if (drop && this.rand.nextInt(100) < 15){
-						location.getWorld().dropItemNaturally(location, new ItemStack(type, 1, (short) 0, block.getData()));
-					}
+				if (block != null) {
+					type = block.getType();
+					location = block.getLocation();
 					
-					block.setType(Material.AIR);
-					
-					if (plugin.lb != null){
-						plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
+					if (type == Material.LOG){
+						if (drop && this.rand.nextInt(100) < 15){
+							location.getWorld().dropItemNaturally(location, new ItemStack(type, 1, (short) 0, block.getData()));
+						}
+						
+						block.setType(Material.AIR);
+						
+						if (plugin.lb != null){
+							plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
+						}
 					}
 				}
 			}
