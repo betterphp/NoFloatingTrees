@@ -47,6 +47,10 @@ public class NoFloatingTrees extends BasePlugin {
 		this.blockLocations.save();
 	}
 	
+	public void processTreeBlockBreak(Block block){
+		this.listener.processTreeBlockBreak(block, true);
+	}
+	
 	/**
 	 * Get tree of a block
 	 * @param block The block to check for a tree

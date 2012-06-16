@@ -46,7 +46,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		return blocks;
 	}
 	
-	private void processTreeBlockBreak(Block block, boolean force){
+	public void processTreeBlockBreak(Block block, boolean force){
 		ArrayList<Block> tree = getTree(block, false);
 		if (tree != null) {
 			for (Block log : tree){
