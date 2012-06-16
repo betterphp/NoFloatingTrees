@@ -36,7 +36,7 @@ public class NoFloatingTrees extends BasePlugin {
 		this.scheduler.scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
 		
 		this.listener = new TreeBreakListener(this);
-		this.pluginManager.registerEvents(listener, this);
+		this.pluginManager.registerEvents(this.listener, this);
 		
 		this.getCommand("nftpurge").setExecutor(new NftPurgeExecutor(this));
 		this.getCommand("nftdebug").setExecutor(new NftDebugExecutor(this));
@@ -46,7 +46,8 @@ public class NoFloatingTrees extends BasePlugin {
 		this.blockLocations.save();
 	}
 	
-	public void processTreeBlockBreak(Block block) {
-		listener.processTreeBlockBreak(block);
+	public void processTreeBlockBreak(Block block){
+		this.listener.processTreeBlockBreak(block);
 	}
+	
 }
