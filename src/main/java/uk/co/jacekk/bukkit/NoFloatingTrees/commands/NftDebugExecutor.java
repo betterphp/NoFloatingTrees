@@ -13,7 +13,7 @@ public class NftDebugExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		super(plugin);
 	}
 	
-	@CommandHandler(names = {"nftdebug"}, description = "Gets some debug information", usage = "/nftdebug")
+	@CommandHandler(names = {"nftdebug"}, description = "Gets some debug information")
 	public void onCommand(CommandSender sender, String label, String[] args){
 		if (!sender.hasPermission("nofloatingtrees.command.debug")){
 			sender.sendMessage(ChatColor.RED + "you do not have permission to use this command");

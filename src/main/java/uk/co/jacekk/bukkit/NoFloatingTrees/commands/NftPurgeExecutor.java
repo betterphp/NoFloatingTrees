@@ -27,7 +27,7 @@ public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		this.rand = new Random();
 	}
 	
-	@CommandHandler(names = {"nftpurge"}, description = "Removes ALL the logs.", usage = "/nftpurge [true/false]")
+	@CommandHandler(names = {"nftpurge"}, description = "Removes ALL the logs.", usage = "[true/false]")
 	public void nftpurge(CommandSender sender, String label, String[] args){
 		if (!sender.hasPermission("nofloatingtrees.command.purge")){
 			sender.sendMessage(ChatColor.RED + "you do not have permission to use this command");
