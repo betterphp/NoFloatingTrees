@@ -8,14 +8,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStorable;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.ChunkLocationStorable;
-import uk.co.jacekk.bukkit.baseplugin.BaseCommandExecutor;
+import uk.co.jacekk.bukkit.baseplugin.command.BaseCommandExecutor;
+import uk.co.jacekk.bukkit.baseplugin.command.CommandHandler;
 
 public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	
@@ -27,16 +27,17 @@ public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		this.rand = new Random();
 	}
 	
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
+	@CommandHandler(names = {"nftpurge"}, description = "Removes ALL the logs.", usage = "/nftpurge [true/false]")
+	public void nftpurge(CommandSender sender, String label, String[] args){
 		if (!sender.hasPermission("nofloatingtrees.command.purge")){
 			sender.sendMessage(ChatColor.RED + "you do not have permission to use this command");
-			return true;
+			return;
 		}
 		
 		if (args.length == 0){
 			sender.sendMessage(ChatColor.RED + "Usage: /nftpurge <drop>");
 			sender.sendMessage(ChatColor.RED + "Example: /nftpurge true");
-			return true;
+			return;
 		}
 		
 		boolean drop = args[0].equalsIgnoreCase("true");
@@ -71,8 +72,6 @@ public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		plugin.blockLocations.clear();
 		
 		sender.sendMessage(ChatColor.GREEN + "Removed " + size + " blocks.");
-		
-		return true;
 	}
 	
 }
