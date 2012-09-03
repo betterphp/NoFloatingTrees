@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStorable;
-import uk.co.jacekk.bukkit.baseplugin.scheduler.BaseTask;
+import uk.co.jacekk.bukkit.baseplugin.v1.scheduler.BaseTask;
 
 public class LogDecayTask extends BaseTask<NoFloatingTrees> {
 	

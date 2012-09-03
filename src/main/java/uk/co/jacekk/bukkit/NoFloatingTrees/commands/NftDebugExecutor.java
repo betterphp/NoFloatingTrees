@@ -4,8 +4,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
-import uk.co.jacekk.bukkit.baseplugin.command.BaseCommandExecutor;
-import uk.co.jacekk.bukkit.baseplugin.command.CommandHandler;
+import uk.co.jacekk.bukkit.baseplugin.v1.command.BaseCommandExecutor;
+import uk.co.jacekk.bukkit.baseplugin.v1.command.CommandHandler;
 
 public class NftDebugExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	

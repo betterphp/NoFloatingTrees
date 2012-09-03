@@ -14,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStorable;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.ChunkLocationStorable;
-import uk.co.jacekk.bukkit.baseplugin.command.BaseCommandExecutor;
-import uk.co.jacekk.bukkit.baseplugin.command.CommandHandler;
+import uk.co.jacekk.bukkit.baseplugin.v1.command.BaseCommandExecutor;
+import uk.co.jacekk.bukkit.baseplugin.v1.command.CommandHandler;
 
 public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	

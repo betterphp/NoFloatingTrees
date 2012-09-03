@@ -9,8 +9,8 @@ import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
 import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStore;
-import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
-import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
+import uk.co.jacekk.bukkit.baseplugin.v1.BasePlugin;
+import uk.co.jacekk.bukkit.baseplugin.v1.config.PluginConfig;
 
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;
@@ -37,7 +37,7 @@ public class NoFloatingTrees extends BasePlugin {
 		this.scheduler.scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
 		
 		this.listener = new TreeBreakListener(this);
-		this.pluginManager.registerEvents(listener, this);
+		this.pluginManager.registerEvents(this.listener, this);
 		
 		this.commandManager.registerCommandExecutor(new NftPurgeExecutor(this));
 		this.commandManager.registerCommandExecutor(new NftDebugExecutor(this));
