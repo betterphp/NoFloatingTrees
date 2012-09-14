@@ -36,7 +36,7 @@ public class NoFloatingTrees extends BasePlugin {
 			this.log.info("LogBlock found removed blocks will be logged as the user 'NoFloatingTrees'");
 		}
 		
-		this.scheduler.scheduleSyncRepeatingTask(this, new LogDecayTask(this), 45, 40);
+		this.scheduler.scheduleSyncRepeatingTask(this, new LogDecayTask(this), 10, 20 * this.config.getInt(Config.DECAY_FREQUENCY));
 		
 		this.listener = new TreeBreakListener(this);
 		this.pluginManager.registerEvents(this.listener, this);

@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import org.bukkit.block.Block;
 
+import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.baseplugin.v1.BaseObject;
 
@@ -77,7 +78,7 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 	}
 	
 	public void addBlock(Block block){
-		long minDecayTime = System.currentTimeMillis() + 40000;
+		long minDecayTime = System.currentTimeMillis() + (plugin.config.getInt(Config.DECAY_WAIT_TIME) * 1000);
 		
 		UUID worldUUID = block.getWorld().getUID();
 		int x = block.getX();

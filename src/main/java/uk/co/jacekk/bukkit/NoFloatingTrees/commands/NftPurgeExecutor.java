@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 
+import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.NoFloatingTrees.storage.BlockLocation;
 import uk.co.jacekk.bukkit.baseplugin.v1.command.BaseCommandExecutor;
@@ -43,7 +44,7 @@ public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 			Material type = block.getType();
 			
 			if (type == Material.LOG){
-				if (drop && rand.nextInt(100) < 15){
+				if (drop && rand.nextInt(100) < plugin.config.getInt(Config.DECAY_DROP_CHANCE)){
 					block.breakNaturally();
 				}else{
 					block.setType(Material.AIR);
