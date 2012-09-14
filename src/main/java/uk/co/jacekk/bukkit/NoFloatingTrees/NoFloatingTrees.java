@@ -29,6 +29,7 @@ public class NoFloatingTrees extends BasePlugin {
 		this.config = new PluginConfig(new File(this.baseDirPath + File.separator + "config.yml"), Config.values(), this.log);
 		
 		this.decayQueue = new DecayQueue(this, new File(this.baseDirPath + File.separator + "block-locations.bin"));
+		this.decayQueue.load();
 		
 		if (this.pluginManager.isPluginEnabled("LogBlock") && this.config.getBoolean(Config.USE_LOGBLOCK)){
 			this.lb = ((LogBlock) this.pluginManager.getPlugin("LogBlock")).getConsumer();
@@ -45,7 +46,7 @@ public class NoFloatingTrees extends BasePlugin {
 	}
 	
 	public void onDisable(){
-		
+		this.decayQueue.save();
 	}
 	
 	/**

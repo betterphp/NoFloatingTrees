@@ -1,6 +1,10 @@
 package uk.co.jacekk.bukkit.NoFloatingTrees.storage;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,18 +26,34 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 		
 		this.queue = new LinkedHashMap<ChunkLocation, LinkedHashMap<Long, BlockLocation>>();
 		this.storageFile = storageFile;
-		
-		if (!this.storageFile.exists()){
-			// TODO
-		}
 	}
 	
 	public void save(){
-		// TODO
+		try{
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(this.storageFile));
+
+			output.writeObject(this.queue);
+			
+			output.flush();
+			output.close();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void load(){
-		// TODO
+		if (this.storageFile.exists()){
+			try{
+				ObjectInputStream input = new ObjectInputStream(new FileInputStream(this.storageFile));
+				
+				this.queue = (LinkedHashMap<ChunkLocation, LinkedHashMap<Long, BlockLocation>>) input.readObject();
+				
+				input.close();
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public int size(){
