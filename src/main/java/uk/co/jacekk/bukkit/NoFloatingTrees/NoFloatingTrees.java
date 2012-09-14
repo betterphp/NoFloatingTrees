@@ -8,7 +8,7 @@ import org.bukkit.block.Block;
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
-import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStore;
+import uk.co.jacekk.bukkit.NoFloatingTrees.storage.DecayQueue;
 import uk.co.jacekk.bukkit.baseplugin.v1.BasePlugin;
 import uk.co.jacekk.bukkit.baseplugin.v1.config.PluginConfig;
 
@@ -19,15 +19,16 @@ public class NoFloatingTrees extends BasePlugin {
 	
 	public Consumer lb;
 	
-	public BlockLocationStore blockLocations;
+	public DecayQueue decayQueue;
+	
 	private TreeBreakListener listener;
 	
 	public void onEnable(){
 		super.onEnable(true);
 		
 		this.config = new PluginConfig(new File(this.baseDirPath + File.separator + "config.yml"), Config.values(), this.log);
-		this.blockLocations = new BlockLocationStore(new File(this.baseDirPath + File.separator + "log-locations.bin"));
-		this.blockLocations.load();
+		
+		this.decayQueue = new DecayQueue(this, new File(this.baseDirPath + File.separator + "block-locations.bin"));
 		
 		if (this.pluginManager.isPluginEnabled("LogBlock") && this.config.getBoolean(Config.USE_LOGBLOCK)){
 			this.lb = ((LogBlock) this.pluginManager.getPlugin("LogBlock")).getConsumer();
@@ -44,7 +45,7 @@ public class NoFloatingTrees extends BasePlugin {
 	}
 	
 	public void onDisable(){
-		this.blockLocations.save();
+		
 	}
 	
 	/**

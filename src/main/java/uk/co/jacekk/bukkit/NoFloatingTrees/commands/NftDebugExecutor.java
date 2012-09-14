@@ -20,7 +20,7 @@ public class NftDebugExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 			return;
 		}
 		
-		Integer size = plugin.blockLocations.size(true);
+		int size = plugin.decayQueue.size();
 		
 		sender.sendMessage(ChatColor.BLUE + "Decay Queue Size " + ((size > 1000) ? ChatColor.RED : ChatColor.GREEN) + size);
 	}

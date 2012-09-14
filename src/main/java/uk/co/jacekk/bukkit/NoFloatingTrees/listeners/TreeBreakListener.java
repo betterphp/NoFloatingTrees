@@ -46,12 +46,12 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		return blocks;
 	}
 	
-	public void processTreeBlockBreak(Block block, boolean force){
+	public void processTreeBlockBreak(Block block){
 		ArrayList<Block> tree = getTree(block, false);
 		
 		if (tree != null){
 			for (Block log : tree){
-				plugin.blockLocations.add(log.getLocation());
+				plugin.decayQueue.addBlock(log);
 			}
 		}
 	}
@@ -123,7 +123,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		}
 		
 		if (block.getType() == Material.LOG){
-			this.processTreeBlockBreak(block, false);
+			this.processTreeBlockBreak(block);
 		}
 	}
 	
@@ -135,7 +135,7 @@ public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 		
 		for (Block block : event.blockList()){
 			if (block.getType() == Material.LOG){
-				this.processTreeBlockBreak(block, false);
+				this.processTreeBlockBreak(block);
 			}
 		}
 	}

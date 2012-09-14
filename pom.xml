@@ -51,7 +51,7 @@
 			<groupId>de.diddiz.LogBlock</groupId>
 			<artifactId>LogBlock</artifactId>
 			<version>1.58</version>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	

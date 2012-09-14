@@ -3,15 +3,10 @@ package uk.co.jacekk.bukkit.NoFloatingTrees;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.bukkit.Chunk;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
-import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStorable;
+import uk.co.jacekk.bukkit.NoFloatingTrees.storage.BlockLocation;
 import uk.co.jacekk.bukkit.baseplugin.v1.scheduler.BaseTask;
 
 public class LogDecayTask extends BaseTask<NoFloatingTrees> {
@@ -25,49 +20,30 @@ public class LogDecayTask extends BaseTask<NoFloatingTrees> {
 	}
 	
 	public void run(){
-		Block block;
-		Location location;
-		Material type;
+		ArrayList<BlockLocation> remove = new ArrayList<BlockLocation>();
 		
-		ArrayList<Location> remove = new ArrayList<Location>();
-		
-		for (World world : plugin.server.getWorlds()){
-			if (plugin.config.getStringList(Config.IGNORE_WORLDS).contains(world.getName())){
-				continue;
-			}
+		for (BlockLocation blockLocation : plugin.decayQueue.getDecayCandidates()){
+			Block block = blockLocation.getBlock();
+			Material type = block.getType();
 			
-			for (Chunk chunk : world.getLoadedChunks()){
-				locations: for (BlockLocationStorable blockLocation : plugin.blockLocations.getAll(chunk)){
-					block = blockLocation.getBlock();
-					location = block.getLocation();
-					type = block.getType();
-					
-					if (type != Material.LOG){
-						remove.add(location);
-					}else if (this.rand.nextInt(100) < 15){
-						for (Player player : blockLocation.getWorld().getPlayers()){
-							if (player.getLocation().distance(block.getLocation()) < 40){
-								continue locations;
-							}
-						}
-						
-						if (rand.nextInt(100) < 15){
-							location.getWorld().dropItemNaturally(location, new ItemStack(type, 1, (short) 0, block.getData()));
-						}
-						
-						block.setType(Material.AIR);
-						
-						if (plugin.lb != null){
-							plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
-						}
-						
-						remove.add(location);
-					}
+			if (type != Material.LOG){
+				remove.add(blockLocation);
+			}else if (this.rand.nextInt(100) < 15){
+				if (rand.nextInt(100) < 15){
+					block.breakNaturally();
+				}else{
+					block.setType(Material.AIR);
 				}
+				
+				if (plugin.lb != null){
+					plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
+				}
+				
+				remove.add(blockLocation);
 			}
 		}
 		
-		plugin.blockLocations.removeAll(remove);
+		plugin.decayQueue.removeAll(remove);
 	}
 
 }

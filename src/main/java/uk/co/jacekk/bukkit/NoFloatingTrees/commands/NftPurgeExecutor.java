@@ -1,19 +1,14 @@
 package uk.co.jacekk.bukkit.NoFloatingTrees.commands;
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
-import org.bukkit.inventory.ItemStack;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
-import uk.co.jacekk.bukkit.NoFloatingTrees.util.BlockLocationStorable;
-import uk.co.jacekk.bukkit.NoFloatingTrees.util.ChunkLocationStorable;
+import uk.co.jacekk.bukkit.NoFloatingTrees.storage.BlockLocation;
 import uk.co.jacekk.bukkit.baseplugin.v1.command.BaseCommandExecutor;
 import uk.co.jacekk.bukkit.baseplugin.v1.command.CommandHandler;
 
@@ -41,35 +36,26 @@ public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		}
 		
 		boolean drop = args[0].equalsIgnoreCase("true");
-		Integer size = plugin.blockLocations.size(true);
+		Integer size = plugin.decayQueue.size();
 		
-		Block block;
-		Material type;
-		Location location;
-		
-		for (Entry<ChunkLocationStorable, ArrayList<BlockLocationStorable>> chunks : plugin.blockLocations.getAll().entrySet()){
-			for (BlockLocationStorable blockLocation : chunks.getValue()){
-				block = blockLocation.getBlock();
-				if (block != null) {
-					type = block.getType();
-					location = block.getLocation();
-					
-					if (type == Material.LOG){
-						if (drop && this.rand.nextInt(100) < 15){
-							location.getWorld().dropItemNaturally(location, new ItemStack(type, 1, (short) 0, block.getData()));
-						}
-						
-						block.setType(Material.AIR);
-						
-						if (plugin.lb != null){
-							plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
-						}
-					}
+		for (BlockLocation blockLocation : plugin.decayQueue.getDecayCandidates()){
+			Block block = blockLocation.getBlock();
+			Material type = block.getType();
+			
+			if (type == Material.LOG){
+				if (drop && rand.nextInt(100) < 15){
+					block.breakNaturally();
+				}else{
+					block.setType(Material.AIR);
+				}
+				
+				if (plugin.lb != null){
+					plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
 				}
 			}
 		}
 		
-		plugin.blockLocations.clear();
+		plugin.decayQueue.clear();
 		
 		sender.sendMessage(ChatColor.GREEN + "Removed " + size + " blocks.");
 	}
