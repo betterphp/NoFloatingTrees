@@ -32,6 +32,10 @@ public class LogDecayTask extends BaseTask<NoFloatingTrees> {
 		ArrayList<Location> remove = new ArrayList<Location>();
 		
 		for (World world : plugin.server.getWorlds()){
+			if (plugin.config.getStringList(Config.IGNORE_WORLDS).contains(world.getName())){
+				continue;
+			}
+			
 			for (Chunk chunk : world.getLoadedChunks()){
 				locations: for (BlockLocationStorable blockLocation : plugin.blockLocations.getAll(chunk)){
 					block = blockLocation.getBlock();
