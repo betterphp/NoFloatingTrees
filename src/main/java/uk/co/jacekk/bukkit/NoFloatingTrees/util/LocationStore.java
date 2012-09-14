@@ -37,7 +37,11 @@ public class LocationStore {
 	@SuppressWarnings("unchecked")
 	public void load(){
 		try{
-			this.locations = (ArrayList<BlockLocationStorable>) new ObjectInputStream(new FileInputStream(this.storageFile)).readObject();
+			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(this.storageFile));
+			
+			this.locations = (ArrayList<BlockLocationStorable>) stream.readObject();
+			
+			stream.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -48,6 +52,7 @@ public class LocationStore {
 			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(this.storageFile));
 			
 			stream.writeObject(this.locations);
+			
 			stream.flush();
 			stream.close();
 		}catch (Exception e){

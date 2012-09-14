@@ -22,7 +22,7 @@ public class BlockLocationStore {
 		this.locations = new HashMap<ChunkLocationStorable, ArrayList<BlockLocationStorable>>();
 		this.storageFile = storageFile;
 		
-		if (this.storageFile.exists() == false){
+		if (!this.storageFile.exists()){
 			try{
 				this.storageFile.createNewFile();
 				
@@ -40,7 +40,11 @@ public class BlockLocationStore {
 	@SuppressWarnings("unchecked")
 	public void load(){
 		try{
-			this.locations = (HashMap<ChunkLocationStorable, ArrayList<BlockLocationStorable>>) new ObjectInputStream(new FileInputStream(this.storageFile)).readObject();
+			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(this.storageFile));
+			
+			this.locations = (HashMap<ChunkLocationStorable, ArrayList<BlockLocationStorable>>) stream.readObject();
+			
+			stream.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -51,6 +55,7 @@ public class BlockLocationStore {
 			ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(this.storageFile));
 			
 			stream.writeObject(this.locations);
+			
 			stream.flush();
 			stream.close();
 		}catch (Exception e){
