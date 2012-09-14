@@ -61,11 +61,12 @@ public class BlockLocationStorable implements Serializable {
 	
 	public Block getBlock(){
 		World world = this.getWorld();
-		if (world != null) {
+		
+		if (world != null){
 			return this.getWorld().getBlockAt(this.x, this.y, this.z);
-		} else {
-			return null;
 		}
+		
+		return null;
 	}
 	
 	public Location getLocation(){
