@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
@@ -103,7 +104,9 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 		long currentTime = System.currentTimeMillis();
 		
 		for (Entry<ChunkLocation, LinkedHashMap<Long, BlockLocation>> entry : this.queue.entrySet()){
-			if (entry.getKey().getChunk().isLoaded()){
+			Chunk chunk = entry.getKey().getChunk();
+			
+			if (chunk != null && chunk.isLoaded()){
 				for (Entry<Long, BlockLocation> blocks : entry.getValue().entrySet()){
 					if (currentTime >= blocks.getKey()){
 						candidates.add(blocks.getValue());
