@@ -10,8 +10,8 @@ import org.bukkit.command.CommandSender;
 import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.NoFloatingTrees.storage.BlockLocation;
-import uk.co.jacekk.bukkit.baseplugin.v1.command.BaseCommandExecutor;
-import uk.co.jacekk.bukkit.baseplugin.v1.command.CommandHandler;
+import uk.co.jacekk.bukkit.baseplugin.v5.command.BaseCommandExecutor;
+import uk.co.jacekk.bukkit.baseplugin.v5.command.CommandHandler;
 
 public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	

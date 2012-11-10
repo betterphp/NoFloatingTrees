@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.storage.BlockLocation;
-import uk.co.jacekk.bukkit.baseplugin.v1.scheduler.BaseTask;
+import uk.co.jacekk.bukkit.baseplugin.v5.scheduler.BaseTask;
 
 public class LogDecayTask extends BaseTask<NoFloatingTrees> {
 	

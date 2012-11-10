@@ -9,8 +9,8 @@ import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
 import uk.co.jacekk.bukkit.NoFloatingTrees.storage.DecayQueue;
-import uk.co.jacekk.bukkit.baseplugin.v1.BasePlugin;
-import uk.co.jacekk.bukkit.baseplugin.v1.config.PluginConfig;
+import uk.co.jacekk.bukkit.baseplugin.v5.BasePlugin;
+import uk.co.jacekk.bukkit.baseplugin.v5.config.PluginConfig;
 
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;
@@ -26,7 +26,7 @@ public class NoFloatingTrees extends BasePlugin {
 	public void onEnable(){
 		super.onEnable(true);
 		
-		this.config = new PluginConfig(new File(this.baseDirPath + File.separator + "config.yml"), Config.values(), this.log);
+		this.config = new PluginConfig(new File(this.baseDirPath + File.separator + "config.yml"), Config.class, this.log);
 		
 		this.decayQueue = new DecayQueue(this, new File(this.baseDirPath + File.separator + "block-locations.bin"));
 		this.decayQueue.load();
