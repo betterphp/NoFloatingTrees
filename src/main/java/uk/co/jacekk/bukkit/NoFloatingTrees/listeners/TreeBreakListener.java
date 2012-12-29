@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
-import uk.co.jacekk.bukkit.baseplugin.v5.event.BaseListener;
+import uk.co.jacekk.bukkit.baseplugin.v7.event.BaseListener;
 
 public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 	

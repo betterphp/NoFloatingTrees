@@ -16,7 +16,7 @@ import org.bukkit.block.Block;
 
 import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
 import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
-import uk.co.jacekk.bukkit.baseplugin.v5.BaseObject;
+import uk.co.jacekk.bukkit.baseplugin.v7.BaseObject;
 
 public class DecayQueue extends BaseObject<NoFloatingTrees> {
 	

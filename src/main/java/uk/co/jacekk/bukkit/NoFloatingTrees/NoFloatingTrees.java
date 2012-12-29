@@ -9,8 +9,8 @@ import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
 import uk.co.jacekk.bukkit.NoFloatingTrees.storage.DecayQueue;
-import uk.co.jacekk.bukkit.baseplugin.v5.BasePlugin;
-import uk.co.jacekk.bukkit.baseplugin.v5.config.PluginConfig;
+import uk.co.jacekk.bukkit.baseplugin.v7.BasePlugin;
+import uk.co.jacekk.bukkit.baseplugin.v7.config.PluginConfig;
 
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;
