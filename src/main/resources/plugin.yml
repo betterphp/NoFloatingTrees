@@ -1,4 +1,5 @@
-name: NoFloatingTrees
-version: 0.11.1
-main: uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees
+name: ${project.name}
+version: ${project.version}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+website: ${project.url}
 softdepend: [LogBlock]

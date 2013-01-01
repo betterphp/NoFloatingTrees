@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees.listeners;
+package uk.co.jacekk.bukkit.nofloatingtrees.listeners;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -12,9 +12,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
-import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
-import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.baseplugin.v7.event.BaseListener;
+import uk.co.jacekk.bukkit.nofloatingtrees.Config;
+import uk.co.jacekk.bukkit.nofloatingtrees.NoFloatingTrees;
 
 public class TreeBreakListener extends BaseListener<NoFloatingTrees> {
 	

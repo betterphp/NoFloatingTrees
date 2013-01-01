@@ -6,6 +6,7 @@
 	<packaging>jar</packaging>
 	
 	<name>NoFloatingTrees</name>
+	<url>http://dev.bukkit.org/server-mods/nofloatingtrees/</url>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,21 +37,21 @@
 		<dependency>
 			<groupId>uk.co.jacekk.bukkit</groupId>
 			<artifactId>baseplugin</artifactId>
-			<version>7.0-SNAPSHOT</version>
+			<version>7.0</version>
 			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.4.6-R0.2-SNAPSHOT</version>
+			<version>1.4.6-R0.3</version>
 			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>de.diddiz.LogBlock</groupId>
 			<artifactId>LogBlock</artifactId>
-			<version>1.58</version>
+			<version>1.60</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
@@ -58,7 +59,7 @@
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
-		<finalName>${project.artifactId}-${project.version}</finalName>
+		<finalName>${project.name}</finalName>
 		
 		<resources>
 			<resource>
@@ -76,7 +77,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.7.1</version>
+				<version>2.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -86,7 +87,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
+					<finalName>${project.name}</finalName>
 					<artifactSet>
 						<includes>
 							<include>uk.co.jacekk.bukkit:baseplugin</include>
@@ -98,7 +99,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>3.0</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>

@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees;
+package uk.co.jacekk.bukkit.nofloatingtrees;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -6,8 +6,8 @@ import java.util.Random;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
-import uk.co.jacekk.bukkit.NoFloatingTrees.storage.BlockLocation;
 import uk.co.jacekk.bukkit.baseplugin.v7.scheduler.BaseTask;
+import uk.co.jacekk.bukkit.nofloatingtrees.storage.BlockLocation;
 
 public class LogDecayTask extends BaseTask<NoFloatingTrees> {
 	

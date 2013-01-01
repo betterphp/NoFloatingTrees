@@ -1,16 +1,16 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees;
+package uk.co.jacekk.bukkit.nofloatingtrees;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import org.bukkit.block.Block;
 
-import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftDebugExecutor;
-import uk.co.jacekk.bukkit.NoFloatingTrees.commands.NftPurgeExecutor;
-import uk.co.jacekk.bukkit.NoFloatingTrees.listeners.TreeBreakListener;
-import uk.co.jacekk.bukkit.NoFloatingTrees.storage.DecayQueue;
 import uk.co.jacekk.bukkit.baseplugin.v7.BasePlugin;
 import uk.co.jacekk.bukkit.baseplugin.v7.config.PluginConfig;
+import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftDebugExecutor;
+import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftPurgeExecutor;
+import uk.co.jacekk.bukkit.nofloatingtrees.listeners.TreeBreakListener;
+import uk.co.jacekk.bukkit.nofloatingtrees.storage.DecayQueue;
 
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;

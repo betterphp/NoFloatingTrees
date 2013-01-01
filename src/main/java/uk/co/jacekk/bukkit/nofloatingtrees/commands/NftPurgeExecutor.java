@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees.commands;
+package uk.co.jacekk.bukkit.nofloatingtrees.commands;
 
 import java.util.Random;
 
@@ -7,11 +7,11 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 
-import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
-import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
-import uk.co.jacekk.bukkit.NoFloatingTrees.storage.BlockLocation;
 import uk.co.jacekk.bukkit.baseplugin.v7.command.BaseCommandExecutor;
 import uk.co.jacekk.bukkit.baseplugin.v7.command.CommandHandler;
+import uk.co.jacekk.bukkit.nofloatingtrees.Config;
+import uk.co.jacekk.bukkit.nofloatingtrees.NoFloatingTrees;
+import uk.co.jacekk.bukkit.nofloatingtrees.storage.BlockLocation;
 
 public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	

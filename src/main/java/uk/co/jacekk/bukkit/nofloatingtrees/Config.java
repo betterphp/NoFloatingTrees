@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees;
+package uk.co.jacekk.bukkit.nofloatingtrees;
 
 import java.util.Arrays;
 

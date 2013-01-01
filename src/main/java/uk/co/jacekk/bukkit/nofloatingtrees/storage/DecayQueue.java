@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees.storage;
+package uk.co.jacekk.bukkit.nofloatingtrees.storage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,9 +14,9 @@ import java.util.UUID;
 import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 
-import uk.co.jacekk.bukkit.NoFloatingTrees.Config;
-import uk.co.jacekk.bukkit.NoFloatingTrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.baseplugin.v7.BaseObject;
+import uk.co.jacekk.bukkit.nofloatingtrees.Config;
+import uk.co.jacekk.bukkit.nofloatingtrees.NoFloatingTrees;
 
 public class DecayQueue extends BaseObject<NoFloatingTrees> {
 	

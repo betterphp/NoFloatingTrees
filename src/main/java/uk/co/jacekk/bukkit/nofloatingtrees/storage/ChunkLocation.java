@@ -1,4 +1,4 @@
-package uk.co.jacekk.bukkit.NoFloatingTrees.storage;
+package uk.co.jacekk.bukkit.nofloatingtrees.storage;
 
 import java.io.Serializable;
 import java.util.UUID;
