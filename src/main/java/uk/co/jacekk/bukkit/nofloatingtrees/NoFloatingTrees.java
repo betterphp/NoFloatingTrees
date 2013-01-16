@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import org.bukkit.block.Block;
 
-import uk.co.jacekk.bukkit.baseplugin.v7.BasePlugin;
-import uk.co.jacekk.bukkit.baseplugin.v7.config.PluginConfig;
+import uk.co.jacekk.bukkit.baseplugin.v8.BasePlugin;
+import uk.co.jacekk.bukkit.baseplugin.v8.config.PluginConfig;
 import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftDebugExecutor;
 import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftPurgeExecutor;
 import uk.co.jacekk.bukkit.nofloatingtrees.listeners.TreeBreakListener;

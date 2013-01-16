@@ -2,7 +2,7 @@ package uk.co.jacekk.bukkit.nofloatingtrees;
 
 import java.util.Arrays;
 
-import uk.co.jacekk.bukkit.baseplugin.v7.config.PluginConfigKey;
+import uk.co.jacekk.bukkit.baseplugin.v8.config.PluginConfigKey;
 
 public class Config {
 	
