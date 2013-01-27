@@ -25,10 +25,14 @@ public class ChunkLocation implements Serializable {
 		this(world.getUID(), x, z);
 	}
 	
-	public Chunk getChunk(){
+	public Chunk getChunk(boolean ignoreUnloaded){
 		World world = Bukkit.getWorld(this.worldUUID);
 		
 		if (world == null){
+			return null;
+		}
+		
+		if (ignoreUnloaded && !world.isChunkLoaded(this.x, this.z)){
 			return null;
 		}
 		

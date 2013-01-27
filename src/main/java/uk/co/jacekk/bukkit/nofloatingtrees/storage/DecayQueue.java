@@ -104,9 +104,9 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 		long currentTime = System.currentTimeMillis();
 		
 		for (Entry<ChunkLocation, LinkedHashMap<Long, BlockLocation>> entry : this.queue.entrySet()){
-			Chunk chunk = entry.getKey().getChunk();
+			Chunk chunk = entry.getKey().getChunk(true);
 			
-			if (chunk != null && chunk.isLoaded()){
+			if (chunk != null){
 				for (Entry<Long, BlockLocation> blocks : entry.getValue().entrySet()){
 					if (currentTime >= blocks.getKey()){
 						candidates.add(blocks.getValue());
