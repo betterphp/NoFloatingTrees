@@ -50,8 +50,8 @@ public class NftPurgeExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 					block.setType(Material.AIR);
 				}
 				
-				if (plugin.lb != null){
-					plugin.lb.queueBlockBreak("NoFloatingTrees", block.getState());
+				if (plugin.logblock != null){
+					plugin.logblock.queueBlockBreak("NoFloatingTrees", block.getState());
 				}
 			}
 		}

@@ -17,10 +17,9 @@ import de.diddiz.LogBlock.LogBlock;
 
 public class NoFloatingTrees extends BasePlugin {
 	
-	public Consumer lb;
+	public Consumer logblock;
 	
 	public DecayQueue decayQueue;
-	
 	private TreeBreakListener listener;
 	
 	public void onEnable(){
@@ -32,7 +31,7 @@ public class NoFloatingTrees extends BasePlugin {
 		this.decayQueue.load();
 		
 		if (this.pluginManager.isPluginEnabled("LogBlock") && this.config.getBoolean(Config.USE_LOGBLOCK)){
-			this.lb = ((LogBlock) this.pluginManager.getPlugin("LogBlock")).getConsumer();
+			this.logblock = ((LogBlock) this.pluginManager.getPlugin("LogBlock")).getConsumer();
 			this.log.info("LogBlock found removed blocks will be logged as the user 'NoFloatingTrees'");
 		}
 		
@@ -51,12 +50,13 @@ public class NoFloatingTrees extends BasePlugin {
 	
 	/**
 	 * Get tree of a block
+	 * 
 	 * @param block The block to check for a tree
-	 * @param force if true, ignore not being directly above dirt/grass, or not under
-	 * another log, or if topmost block is not leaves 
+	 * @param force if true, ignore not being directly above dirt/grass, or not under another log, or if topmost block is not leaves 
 	 * @return {@link ArrayList<Block>} of tree log blocks, or null
 	 */
-	public ArrayList<Block> getTree(Block block, boolean force) {
+	public ArrayList<Block> getTree(Block block, boolean force){
 		return this.listener.getTree(block, force);
 	}
+	
 }

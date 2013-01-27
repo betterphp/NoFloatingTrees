@@ -33,7 +33,7 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 	public void save(){
 		try{
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(this.storageFile));
-
+			
 			output.writeObject(this.queue);
 			
 			output.flush();
