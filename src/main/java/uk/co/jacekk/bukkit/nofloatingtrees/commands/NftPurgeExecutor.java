@@ -7,8 +7,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 
-import uk.co.jacekk.bukkit.baseplugin.v8.command.BaseCommandExecutor;
-import uk.co.jacekk.bukkit.baseplugin.v8.command.CommandHandler;
+import uk.co.jacekk.bukkit.baseplugin.v9.command.BaseCommandExecutor;
+import uk.co.jacekk.bukkit.baseplugin.v9.command.CommandHandler;
 import uk.co.jacekk.bukkit.nofloatingtrees.Config;
 import uk.co.jacekk.bukkit.nofloatingtrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.nofloatingtrees.storage.BlockLocation;

@@ -14,7 +14,7 @@ import java.util.UUID;
 import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 
-import uk.co.jacekk.bukkit.baseplugin.v8.BaseObject;
+import uk.co.jacekk.bukkit.baseplugin.v9.BaseObject;
 import uk.co.jacekk.bukkit.nofloatingtrees.Config;
 import uk.co.jacekk.bukkit.nofloatingtrees.NoFloatingTrees;
 
