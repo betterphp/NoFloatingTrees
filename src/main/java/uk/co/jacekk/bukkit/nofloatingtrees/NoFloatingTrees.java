@@ -7,8 +7,7 @@ import org.bukkit.block.Block;
 
 import uk.co.jacekk.bukkit.baseplugin.v9.BasePlugin;
 import uk.co.jacekk.bukkit.baseplugin.v9.config.PluginConfig;
-import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftDebugExecutor;
-import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftPurgeExecutor;
+import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftExecutor;
 import uk.co.jacekk.bukkit.nofloatingtrees.listeners.TreeBreakListener;
 import uk.co.jacekk.bukkit.nofloatingtrees.storage.DecayQueue;
 
@@ -40,8 +39,7 @@ public class NoFloatingTrees extends BasePlugin {
 		this.listener = new TreeBreakListener(this);
 		this.pluginManager.registerEvents(this.listener, this);
 		
-		this.commandManager.registerCommandExecutor(new NftPurgeExecutor(this));
-		this.commandManager.registerCommandExecutor(new NftDebugExecutor(this));
+		this.commandManager.registerCommandExecutor(new NftExecutor(this));
 	}
 	
 	public void onDisable(){
