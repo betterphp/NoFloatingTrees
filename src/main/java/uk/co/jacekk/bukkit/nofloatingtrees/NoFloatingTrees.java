@@ -38,7 +38,7 @@ public class NoFloatingTrees extends BasePlugin {
 		
 		this.listener = new TreeBreakListener(this);
 		this.pluginManager.registerEvents(this.listener, this);
-		
+		this.permissionManager.registerPermissions(Permission.class);
 		this.commandManager.registerCommandExecutor(new NftExecutor(this));
 	}
 	

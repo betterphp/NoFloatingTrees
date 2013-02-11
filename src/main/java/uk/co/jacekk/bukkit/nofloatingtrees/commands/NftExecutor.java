@@ -9,9 +9,11 @@ import org.bukkit.command.CommandSender;
 
 import uk.co.jacekk.bukkit.baseplugin.v9.command.BaseCommandExecutor;
 import uk.co.jacekk.bukkit.baseplugin.v9.command.CommandHandler;
+import uk.co.jacekk.bukkit.baseplugin.v9.command.CommandTabCompletion;
 import uk.co.jacekk.bukkit.baseplugin.v9.command.SubCommandHandler;
 import uk.co.jacekk.bukkit.nofloatingtrees.Config;
 import uk.co.jacekk.bukkit.nofloatingtrees.NoFloatingTrees;
+import uk.co.jacekk.bukkit.nofloatingtrees.Permission;
 import uk.co.jacekk.bukkit.nofloatingtrees.storage.BlockLocation;
 
 public class NftExecutor extends BaseCommandExecutor<NoFloatingTrees> {
@@ -20,17 +22,25 @@ public class NftExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		super(plugin);
 	}
 	
+	@CommandHandler(names = {"nft"}, description = "Used to manage the decay queue", usage = "<option>")
+	@CommandTabCompletion({"queue|purge"})
 	public void nft(CommandSender sender, String label, String[] args){
 		sender.sendMessage(ChatColor.RED + "Usage: /" + label + " <option> <args>");
 		sender.sendMessage(ChatColor.RED + "Options:");
-		sender.sendMessage(ChatColor.RED + "  queue - Shows the size of the decay queue");
-		sender.sendMessage(ChatColor.RED + "  purge - Forces all waiting blocks to decay");
+		
+		if (Permission.QUEUE_SIZE.has(sender)){
+			sender.sendMessage(ChatColor.RED + "  queue - Shows the size of the decay queue");
+		}
+		
+		if (Permission.QUEUE_PURGE.has(sender)){
+			sender.sendMessage(ChatColor.RED + "  purge - Forces all waiting blocks to decay");
+		}
 	}
 	
 	@SubCommandHandler(parent = "nft", name = "queue")
 	public void nftQueue(CommandSender sender, String label, String[] args){
-		if (!sender.hasPermission("nofloatingtrees.command.debug")){
-			sender.sendMessage(ChatColor.RED + "you do not have permission to use this command");
+		if (!Permission.QUEUE_SIZE.has(sender)){
+			sender.sendMessage(ChatColor.RED + "You do not have permission to use this command");
 			return;
 		}
 		
@@ -40,15 +50,16 @@ public class NftExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 	}
 	
 	@SubCommandHandler(parent = "nft", name = "purge")
+	@CommandTabCompletion({"true|false"})
 	public void nftPurge(CommandSender sender, String label, String[] args){
-		if (!sender.hasPermission("nofloatingtrees.command.purge")){
-			sender.sendMessage(ChatColor.RED + "you do not have permission to use this command");
+		if (!Permission.QUEUE_PURGE.has(sender)){
+			sender.sendMessage(ChatColor.RED + "You do not have permission to use this command");
 			return;
 		}
 		
 		if (args.length == 0){
-			sender.sendMessage(ChatColor.RED + "Usage: /nftpurge <drop>");
-			sender.sendMessage(ChatColor.RED + "Example: /nftpurge true");
+			sender.sendMessage(ChatColor.RED + "Usage: /" + label + " purge <drop>");
+			sender.sendMessage(ChatColor.RED + "Example: /" + label + " purge true");
 			return;
 		}
 		
