@@ -32,7 +32,7 @@ public class ChunkLocation implements Serializable {
 			return null;
 		}
 		
-		if (ignoreUnloaded && !world.isChunkLoaded(this.x, this.z)){
+		if (!ignoreUnloaded && !world.isChunkLoaded(this.x, this.z)){
 			return null;
 		}
 		
