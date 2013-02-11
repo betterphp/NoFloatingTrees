@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.co.jacekk.bukkit</groupId>
 	<artifactId>nofloatingtrees</artifactId>
-	<version>0.12-SNAPSHOT</version>
+	<version>0.12</version>
 	<packaging>jar</packaging>
 	
 	<name>NoFloatingTrees</name>
