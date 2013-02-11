@@ -1,5 +1,6 @@
 package uk.co.jacekk.bukkit.nofloatingtrees.commands;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
@@ -64,7 +65,8 @@ public class NftExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 		}
 		
 		boolean drop = args[0].equalsIgnoreCase("true");
-		Integer size = plugin.decayQueue.size();
+		
+		ArrayList<BlockLocation> removed = new ArrayList<BlockLocation>();
 		Random rand = new Random();
 		
 		for (BlockLocation blockLocation : plugin.decayQueue.getDecayCandidates()){
@@ -81,12 +83,14 @@ public class NftExecutor extends BaseCommandExecutor<NoFloatingTrees> {
 				if (plugin.logblock != null){
 					plugin.logblock.queueBlockBreak("NoFloatingTrees", block.getState());
 				}
+				
+				removed.add(blockLocation);
 			}
 		}
 		
-		plugin.decayQueue.clear();
+		plugin.decayQueue.removeAll(removed);
 		
-		sender.sendMessage(ChatColor.GREEN + "Removed " + size + " blocks.");
+		sender.sendMessage(ChatColor.GREEN + "Removed " + removed.size() + " blocks.");
 	}
 	
 }

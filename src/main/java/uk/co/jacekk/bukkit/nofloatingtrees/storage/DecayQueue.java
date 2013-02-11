@@ -43,7 +43,6 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void load(){
 		if (this.storageFile.exists()){
 			try{

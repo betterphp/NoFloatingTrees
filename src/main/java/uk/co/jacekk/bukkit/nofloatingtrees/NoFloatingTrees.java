@@ -38,8 +38,8 @@ public class NoFloatingTrees extends BasePlugin {
 		
 		this.scheduler.scheduleSyncRepeatingTask(this, new LogDecayTask(this), 10, 20 * this.config.getInt(Config.DECAY_FREQUENCY));
 		
-		this.pluginManager.registerEvents(new TreeBreakListener(this), this);
 		this.permissionManager.registerPermissions(Permission.class);
+		this.pluginManager.registerEvents(new TreeBreakListener(this), this);
 		this.commandManager.registerCommandExecutor(new NftExecutor(this));
 	}
 	
