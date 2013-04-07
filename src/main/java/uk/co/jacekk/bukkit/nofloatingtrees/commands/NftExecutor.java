@@ -8,10 +8,10 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 
-import uk.co.jacekk.bukkit.baseplugin.v9_1.command.BaseCommandExecutor;
-import uk.co.jacekk.bukkit.baseplugin.v9_1.command.CommandHandler;
-import uk.co.jacekk.bukkit.baseplugin.v9_1.command.CommandTabCompletion;
-import uk.co.jacekk.bukkit.baseplugin.v9_1.command.SubCommandHandler;
+import uk.co.jacekk.bukkit.baseplugin.command.BaseCommandExecutor;
+import uk.co.jacekk.bukkit.baseplugin.command.CommandHandler;
+import uk.co.jacekk.bukkit.baseplugin.command.CommandTabCompletion;
+import uk.co.jacekk.bukkit.baseplugin.command.SubCommandHandler;
 import uk.co.jacekk.bukkit.nofloatingtrees.Config;
 import uk.co.jacekk.bukkit.nofloatingtrees.NoFloatingTrees;
 import uk.co.jacekk.bukkit.nofloatingtrees.Permission;
