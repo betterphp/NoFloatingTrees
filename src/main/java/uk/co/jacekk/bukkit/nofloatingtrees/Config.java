@@ -6,6 +6,7 @@ import uk.co.jacekk.bukkit.baseplugin.config.PluginConfigKey;
 
 public class Config {
 	
+	public static final PluginConfigKey ENABLE_PROFILER			= new PluginConfigKey("enable-profiler",	true);
 	public static final PluginConfigKey USE_LOGBLOCK			= new PluginConfigKey("use-logblock",		true);
 	public static final PluginConfigKey IGNORE_WORLDS			= new PluginConfigKey("ignore-worlds",		Arrays.asList("world_nether", "world_the_end"));
 	public static final PluginConfigKey DECAY_FREQUENCY			= new PluginConfigKey("decay.frequency",	2);
