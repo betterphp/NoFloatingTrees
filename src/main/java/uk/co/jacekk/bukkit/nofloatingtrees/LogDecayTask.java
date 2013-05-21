@@ -29,14 +29,14 @@ public class LogDecayTask extends BaseTask<NoFloatingTrees> {
 			if (type != Material.LOG){
 				remove.add(blockLocation);
 			}else if (this.rand.nextInt(100) < plugin.config.getInt(Config.DECAY_CHANCE)){
+                if (plugin.logblock != null){
+            		plugin.logblock.queueBlockBreak("NoFloatingTrees", block.getState());
+            	}
+
 				if (rand.nextInt(100) < plugin.config.getInt(Config.DECAY_DROP_CHANCE)){
 					block.breakNaturally();
 				}else{
 					block.setType(Material.AIR);
-				}
-				
-				if (plugin.logblock != null){
-					plugin.logblock.queueBlockBreak("NoFloatingTrees", block.getState());
 				}
 				
 				remove.add(blockLocation);
