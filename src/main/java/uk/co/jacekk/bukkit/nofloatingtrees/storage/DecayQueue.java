@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -51,6 +52,14 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 				this.queue = (LinkedHashMap<ChunkLocation, LinkedHashMap<Long, BlockLocation>>) input.readObject();
 				
 				input.close();
+				
+				Iterator<LinkedHashMap<Long, BlockLocation>> iterator = this.queue.values().iterator();
+				
+				while (iterator.hasNext()){
+					if (iterator.next().isEmpty()){
+						iterator.remove();
+					}
+				}
 			}catch (Exception e){
 				e.printStackTrace();
 			}
@@ -72,8 +81,16 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 	}
 	
 	public void removeAll(List<BlockLocation> locations){
-		for (LinkedHashMap<Long, BlockLocation> blocks : this.queue.values()){
+		Iterator<LinkedHashMap<Long, BlockLocation>> iterator = this.queue.values().iterator();
+		
+		while (iterator.hasNext()){
+			LinkedHashMap<Long, BlockLocation> blocks = iterator.next();
+			
 			blocks.values().removeAll(locations);
+			
+			if (blocks.isEmpty()){
+				iterator.remove();
+			}
 		}
 	}
 	
