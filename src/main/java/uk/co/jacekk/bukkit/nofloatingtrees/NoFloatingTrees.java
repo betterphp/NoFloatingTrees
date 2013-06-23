@@ -41,10 +41,6 @@ public class NoFloatingTrees extends BasePlugin {
 		this.permissionManager.registerPermissions(Permission.class);
 		this.pluginManager.registerEvents(new TreeBreakListener(this), this);
 		this.commandManager.registerCommandExecutor(new NftExecutor(this));
-		
-		if (this.config.getBoolean(Config.ENABLE_PROFILER)){
-			this.enableProfiling();
-		}
 	}
 	
 	public void onDisable(){
