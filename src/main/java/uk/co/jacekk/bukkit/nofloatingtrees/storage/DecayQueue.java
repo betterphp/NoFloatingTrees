@@ -115,6 +115,29 @@ public class DecayQueue extends BaseObject<NoFloatingTrees> {
 		chunkQueue.put(minDecayTime, blockLocation);
 	}
 	
+	public void removeBlock(Block block){
+		UUID worldUUID = block.getWorld().getUID();
+		int x = block.getX();
+		int y = block.getY();
+		int z = block.getZ();
+		
+		ChunkLocation chunkLocation = new ChunkLocation(worldUUID, x, z);
+		BlockLocation blockLocation = new BlockLocation(worldUUID, x, y, z);
+		
+		LinkedHashMap<Long, BlockLocation> chunkQueue = this.queue.get(chunkLocation);
+		
+		if (chunkQueue != null){
+			Iterator<Entry<Long, BlockLocation>> iterator = chunkQueue.entrySet().iterator();
+			
+			while (iterator.hasNext()){
+				if (iterator.next().getValue().equals(blockLocation)){
+					iterator.remove();
+					break;
+				}
+			}
+		}
+	}
+	
 	public ArrayList<BlockLocation> getDecayCandidates(){
 		ArrayList<BlockLocation> candidates = new ArrayList<BlockLocation>();
 		long currentTime = System.currentTimeMillis();

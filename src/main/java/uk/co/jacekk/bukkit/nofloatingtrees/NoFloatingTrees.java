@@ -13,6 +13,7 @@ import uk.co.jacekk.bukkit.baseplugin.BasePlugin;
 import uk.co.jacekk.bukkit.baseplugin.config.PluginConfig;
 import uk.co.jacekk.bukkit.nofloatingtrees.commands.NftExecutor;
 import uk.co.jacekk.bukkit.nofloatingtrees.listeners.TreeBreakListener;
+import uk.co.jacekk.bukkit.nofloatingtrees.listeners.TreeCreateListener;
 import uk.co.jacekk.bukkit.nofloatingtrees.storage.DecayQueue;
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;
@@ -40,6 +41,7 @@ public class NoFloatingTrees extends BasePlugin {
 		
 		this.permissionManager.registerPermissions(Permission.class);
 		this.pluginManager.registerEvents(new TreeBreakListener(this), this);
+		this.pluginManager.registerEvents(new TreeCreateListener(this), this);
 		this.commandManager.registerCommandExecutor(new NftExecutor(this));
 	}
 	
