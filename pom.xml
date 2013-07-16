@@ -3,7 +3,7 @@
 	<groupId>uk.co.jacekk.bukkit</groupId>
 	<artifactId>nofloatingtrees</artifactId>
 	<name>NoFloatingTrees</name>
-	<version>0.12</version>
+	<version>0.12.1</version>
 	<packaging>jar</packaging>
 	<url>http://dev.bukkit.org/bukkit-plugins/nofloatingtrees/</url>
 	
@@ -13,8 +13,8 @@
 		<upload.dbo.category>bukkit-plugins</upload.dbo.category>
 		<upload.dbo.slug>nofloatingtrees</upload.dbo.slug>
 		
-		<baseplugin.version>12</baseplugin.version>
-		<baseplugin.package>12</baseplugin.package>
+		<baseplugin.version>13</baseplugin.version>
+		<baseplugin.package>13</baseplugin.package>
 	</properties>
 	
 	<repositories>
@@ -31,7 +31,7 @@
 		<repository>
 			<id>plugin-repo</id>
 			<!-- NOTE: This just redirects to the dev.bukkit.org download links. -->
-			<url>http://bukkit.jacekk.co.uk/plugin_repo/repo/</url>
+			<url>http://bukkit.jacekk.co.uk/plugin_repo/</url>
 		</repository>
 	</repositories>
 	
@@ -53,12 +53,12 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.5.2-R0.1</version>
+			<version>1.6.2-R0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
-			<groupId>dev.bukkit.org.server-mods</groupId>
+			<groupId>org.bukkit.dev</groupId>
 			<artifactId>logblock</artifactId>
 			<version>1.70</version>
 			<scope>compile</scope>
